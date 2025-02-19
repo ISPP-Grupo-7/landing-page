@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
   Calendar,
@@ -18,7 +19,8 @@ import {
   Image as ImageIcon,
   Map,
   Crown,
-  X
+  X,
+  ArrowLeft
 } from "lucide-react";
 import { ExplorationCard } from "@/types/explore";
 import { ImageSlider } from "@/components/ui/image-slider";
@@ -38,6 +40,7 @@ type Comment = {
 
 export default function PlaceDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [place, setPlace] = useState<ExplorationCard | null>(null);
   const [comments, setComments] = useLocalStorage<Comment[]>('place_comments', []);
   const [newComment, setNewComment] = useState('');
@@ -53,120 +56,354 @@ export default function PlaceDetail() {
   };
 
   useEffect(() => {
-    // Aquí cargaríamos los datos del lugar desde una API
-    // Por ahora usamos datos de ejemplo
-    setPlace({
-      id: "1",
-      title: "Ruta del Vino - Ribera del Duero",
-      location: "Castilla y León, España",
-      coordinates: {
-        lat: 41.6167,
-        lng: -4.0833
+    // Usamos los mismos datos que en Explore.tsx
+    const mockPlaces: ExplorationCard[] = [
+      {
+        id: "1",
+        title: "Ruta del Vino - Ribera del Duero",
+        location: "Castilla y León, España",
+        coordinates: {
+          lat: 41.6167,
+          lng: -4.0833
+        },
+        image: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
+        likes: 324,
+        comments: 45,
+        author: "María G.",
+        authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
+        tags: ["Gastronomía", "Cultura", "Vino", "Enoturismo", "Historia"],
+        date: "2024-02-15",
+        duration: "3 días",
+        rating: 4.8,
+        category: 'tendencias',
+        description: "Descubre los mejores viñedos y bodegas de la región. Un recorrido por la historia y la cultura del vino en una de las denominaciones de origen más prestigiosas de España.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
+            author: "María G.",
+            authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
+            date: "2024-02-15",
+            isPremium: true,
+            description: "Vista panorámica de los viñedos al atardecer"
+          }
+        ],
+        highlights: ["Catas de vino exclusivas", "Visitas a bodegas centenarias", "Gastronomía local"]
       },
-      image: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
-      likes: 324,
-      comments: 45,
-      author: "María G.",
-      authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      tags: ["Gastronomía", "Cultura", "Vino", "Enoturismo", "Historia"],
-      date: "2024-02-15",
-      duration: "3 días",
-      rating: 4.8,
-      category: 'tendencias',
-      description: "Descubre los mejores viñedos y bodegas de la región. Un recorrido por la historia y la cultura del vino en una de las denominaciones de origen más prestigiosas de España. Visita bodegas centenarias, participa en catas exclusivas y disfruta de la gastronomía local. Esta ruta te llevará por los paisajes más emblemáticos de la Ribera del Duero, donde podrás conocer de primera mano el proceso de elaboración del vino y su importancia en la cultura local.",
-      gallery: [
-        {
-          url: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
-          author: "María G.",
-          authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
-          date: "2024-02-15",
-          isPremium: true,
-          description: "Vista panorámica de los viñedos al atardecer en la Ribera del Duero"
+      {
+        id: "2",
+        title: "Ruta de los Pueblos Blancos",
+        location: "Andalucía, España",
+        coordinates: {
+          lat: 36.7213,
+          lng: -5.3717
         },
-        {
-          url: "https://images.unsplash.com/photo-1560493676-04071c5f467b",
-          author: "Carlos R.",
-          authorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-          date: "2024-02-14",
-          isPremium: false,
-          description: "Cata de vinos premium en bodega centenaria"
+        image: "https://images.unsplash.com/photo-1559060680-36abfac01944",
+        likes: 567,
+        comments: 89,
+        author: "Carlos M.",
+        authorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+        tags: ["Pueblos", "Historia", "Arquitectura", "Cultura"],
+        date: "2024-02-10",
+        duration: "5 días",
+        rating: 4.9,
+        category: 'populares',
+        description: "Descubre la belleza de los pueblos blancos andaluces, con sus calles empedradas y casas encaladas.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1559060680-36abfac01944",
+            author: "Carlos M.",
+            authorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            date: "2024-02-10",
+            isPremium: false,
+            description: "Vista de las calles empedradas y casas blancas"
+          }
+        ],
+        highlights: ["Arquitectura tradicional", "Vistas panorámicas", "Gastronomía local"]
+      },
+      {
+        id: "3",
+        title: "Camino de Santiago",
+        location: "Varios, España",
+        coordinates: {
+          lat: 42.8805,
+          lng: -8.5456
         },
-        {
-          url: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb",
-          author: "Laura M.",
-          authorAvatar: "https://randomuser.me/api/portraits/women/22.jpg",
-          date: "2024-02-13",
-          isPremium: true,
-          description: "Barricas de roble en la sala de envejecimiento"
+        image: "https://images.unsplash.com/photo-1583318432730-a19c89692612",
+        likes: 892,
+        comments: 156,
+        author: "Laura P.",
+        authorAvatar: "https://randomuser.me/api/portraits/women/22.jpg",
+        tags: ["Senderismo", "Espiritual", "Naturaleza"],
+        date: "2024-02-01",
+        duration: "30 días",
+        rating: 5.0,
+        category: 'populares',
+        description: "La ruta más emblemática de España, un camino de descubrimiento personal y cultural.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1583318432730-a19c89692612",
+            author: "Laura P.",
+            authorAvatar: "https://randomuser.me/api/portraits/women/22.jpg",
+            date: "2024-02-01",
+            isPremium: true,
+            description: "Peregrinos en el Camino Francés"
+          }
+        ],
+        highlights: ["Experiencia espiritual", "Patrimonio histórico", "Naturaleza impresionante"]
+      },
+      {
+        id: "4",
+        title: "Costa Brava en Velero",
+        location: "Cataluña, España",
+        coordinates: {
+          lat: 41.9702,
+          lng: 3.2234
         },
-        {
-          url: "https://images.unsplash.com/photo-1578911373434-0cb395d2cbfb",
-          author: "Pedro S.",
-          authorAvatar: "https://randomuser.me/api/portraits/men/45.jpg",
-          date: "2024-02-12",
-          isPremium: true,
-          description: "Degustación de vinos y tapas locales"
+        image: "https://images.unsplash.com/photo-1534447677768-be436bb09401",
+        likes: 423,
+        comments: 67,
+        author: "Pablo R.",
+        authorAvatar: "https://randomuser.me/api/portraits/men/28.jpg",
+        tags: ["Náutico", "Playa", "Aventura"],
+        date: "2024-02-20",
+        duration: "7 días",
+        rating: 4.7,
+        category: 'cercanos',
+        description: "Explora las calas más hermosas desde el mar en una aventura única.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1534447677768-be436bb09401",
+            author: "Pablo R.",
+            authorAvatar: "https://randomuser.me/api/portraits/men/28.jpg",
+            date: "2024-02-20",
+            isPremium: true,
+            description: "Navegando por la Costa Brava"
+          }
+        ],
+        highlights: ["Calas secretas", "Navegación", "Snorkel"]
+      },
+      {
+        id: "5",
+        title: "Ruta Gastronómica por San Sebastián",
+        location: "País Vasco, España",
+        coordinates: {
+          lat: 43.3183,
+          lng: -1.9812
         },
-        {
-          url: "https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea",
-          author: "Ana R.",
-          authorAvatar: "https://randomuser.me/api/portraits/women/67.jpg",
-          date: "2024-02-11",
-          isPremium: false,
-          description: "Viñedos en primavera con el castillo de Peñafiel al fondo"
+        image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+        likes: 756,
+        comments: 134,
+        author: "Elena M.",
+        authorAvatar: "https://randomuser.me/api/portraits/women/56.jpg",
+        tags: ["Gastronomía", "Cultura", "Ciudad"],
+        date: "2024-02-18",
+        duration: "4 días",
+        rating: 4.9,
+        category: 'tendencias',
+        description: "Descubre la capital mundial de los pintxos y su exquisita gastronomía.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+            author: "Elena M.",
+            authorAvatar: "https://randomuser.me/api/portraits/women/56.jpg",
+            date: "2024-02-18",
+            isPremium: false,
+            description: "Pintxos tradicionales vascos"
+          }
+        ],
+        highlights: ["Pintxos gourmet", "Restaurantes estrella Michelin", "Mercados locales"]
+      },
+      {
+        id: "6",
+        title: "Sierra de Gredos",
+        location: "Ávila, España",
+        coordinates: {
+          lat: 40.2599,
+          lng: -5.1388
         },
-        {
-          url: "https://images.unsplash.com/photo-1507434965515-61775ba49a61",
-          author: "Juan M.",
-          authorAvatar: "https://randomuser.me/api/portraits/men/78.jpg",
-          date: "2024-02-10",
-          isPremium: true,
-          description: "Experiencia de vendimia tradicional"
-        }
-      ],
-      highlights: [
-        "Visitas guiadas a bodegas históricas con más de 100 años de antigüedad",
-        "Catas de vino premium con sumilleres expertos",
-        "Alojamiento en hoteles boutique con encanto entre viñedos",
-        "Gastronomía local de primera calidad maridada con vinos de la región",
-        "Experiencias únicas como la vendimia tradicional o talleres de cata",
-        "Visita al Museo del Vino en el Castillo de Peñafiel",
-        "Recorridos en bicicleta por los viñedos",
-        "Cenas exclusivas en bodegas subterráneas medievales"
-      ]
-    });
+        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+        likes: 345,
+        comments: 78,
+        author: "Daniel F.",
+        authorAvatar: "https://randomuser.me/api/portraits/men/62.jpg",
+        tags: ["Montaña", "Naturaleza", "Senderismo"],
+        date: "2024-02-22",
+        duration: "2 días",
+        rating: 4.6,
+        category: 'cercanos',
+        description: "Descubre la majestuosidad de la Sierra de Gredos y sus rutas de montaña.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+            author: "Daniel F.",
+            authorAvatar: "https://randomuser.me/api/portraits/men/62.jpg",
+            date: "2024-02-22",
+            isPremium: false,
+            description: "Vistas panorámicas de la sierra"
+          }
+        ],
+        highlights: ["Rutas de senderismo", "Fauna local", "Paisajes de montaña"]
+      },
+      {
+        id: "7",
+        title: "Festival de Las Fallas",
+        location: "Valencia, España",
+        coordinates: {
+          lat: 39.4699,
+          lng: -0.3763
+        },
+        image: "https://images.unsplash.com/photo-1560986752-2e31d9507413",
+        likes: 1203,
+        comments: 245,
+        author: "Ana V.",
+        authorAvatar: "https://randomuser.me/api/portraits/women/67.jpg",
+        tags: ["Cultura", "Festivales", "Arte"],
+        date: "2024-03-15",
+        duration: "5 días",
+        rating: 4.9,
+        category: 'tendencias',
+        description: "Vive la magia y el espectáculo de las Fallas valencianas.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1560986752-2e31d9507413",
+            author: "Ana V.",
+            authorAvatar: "https://randomuser.me/api/portraits/women/67.jpg",
+            date: "2024-03-15",
+            isPremium: true,
+            description: "Fuegos artificiales en la noche valenciana"
+          }
+        ],
+        highlights: ["Mascletás", "Fallas monumentales", "Ofrenda floral"]
+      },
+      {
+        id: "8",
+        title: "Ruta del Modernismo",
+        location: "Barcelona, España",
+        coordinates: {
+          lat: 41.3851,
+          lng: 2.1734
+        },
+        image: "https://images.unsplash.com/photo-1617178851416-16180c2dddd6",
+        likes: 678,
+        comments: 98,
+        author: "Marc B.",
+        authorAvatar: "https://randomuser.me/api/portraits/men/75.jpg",
+        tags: ["Arquitectura", "Arte", "Ciudad"],
+        date: "2024-03-10",
+        duration: "3 días",
+        rating: 4.8,
+        category: 'populares',
+        description: "Explora las joyas arquitectónicas del modernismo catalán.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1617178851416-16180c2dddd6",
+            author: "Marc B.",
+            authorAvatar: "https://randomuser.me/api/portraits/men/75.jpg",
+            date: "2024-03-10",
+            isPremium: true,
+            description: "Detalles modernistas de la Casa Batlló"
+          }
+        ],
+        highlights: ["Obras de Gaudí", "Casa Batlló", "Palau de la Música"]
+      },
+      {
+        id: "9",
+        title: "Aventura en Picos de Europa",
+        location: "Asturias, España",
+        coordinates: {
+          lat: 43.1937,
+          lng: -4.8333
+        },
+        image: "https://images.unsplash.com/photo-1513311068348-19c8fbdc0bb6",
+        likes: 892,
+        comments: 167,
+        author: "Roberto A.",
+        authorAvatar: "https://randomuser.me/api/portraits/men/89.jpg",
+        tags: ["Montaña", "Aventura", "Naturaleza"],
+        date: "2024-03-05",
+        duration: "4 días",
+        rating: 4.9,
+        category: 'tendencias',
+        description: "Aventúrate en uno de los parques nacionales más espectaculares.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1513311068348-19c8fbdc0bb6",
+            author: "Roberto A.",
+            authorAvatar: "https://randomuser.me/api/portraits/men/89.jpg",
+            date: "2024-03-05",
+            isPremium: true,
+            description: "Vistas del Naranjo de Bulnes"
+          }
+        ],
+        highlights: ["Naranjo de Bulnes", "Lagos de Covadonga", "Rutas de montaña"]
+      },
+      {
+        id: "10",
+        title: "Semana Santa en Sevilla",
+        location: "Sevilla, España",
+        coordinates: {
+          lat: 37.3891,
+          lng: -5.9845
+        },
+        image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b",
+        likes: 1456,
+        comments: 289,
+        author: "Carmen S.",
+        authorAvatar: "https://randomuser.me/api/portraits/women/91.jpg",
+        tags: ["Cultura", "Religión", "Tradición"],
+        date: "2024-03-20",
+        duration: "7 días",
+        rating: 5.0,
+        category: 'tendencias',
+        description: "Vive la pasión y el fervor de la Semana Santa sevillana.",
+        gallery: [
+          {
+            url: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b",
+            author: "Carmen S.",
+            authorAvatar: "https://randomuser.me/api/portraits/women/91.jpg",
+            date: "2024-03-20",
+            isPremium: true,
+            description: "Procesión nocturna en el centro histórico"
+          }
+        ],
+        highlights: ["Procesiones", "Arte sacro", "Tradiciones centenarias"]
+      }
+    ];
+
+    const selectedPlace = mockPlaces.find(place => place.id === id);
+    if (selectedPlace) {
+      setPlace(selectedPlace);
+    }
   }, [id]);
 
   const handleDeleteComment = (commentId: string) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este comentario?')) {
-      setComments((prevComments: Comment[]) => 
-        prevComments.filter(comment => comment.id !== commentId)
-      );
+      const updatedComments = comments.filter(comment => comment.id !== commentId);
+      setComments(updatedComments);
     }
   };
 
   const handleLikeComment = (commentId: string) => {
-    setComments((prevComments: Comment[]) => 
-      prevComments.map(comment => {
-        if (comment.id === commentId) {
-          const likedByArray = comment.likedBy || [];
-          const userIndex = likedByArray.indexOf(currentUser.id);
-          
-          if (userIndex !== -1) {
-            const newLikedBy = [...likedByArray];
-            newLikedBy.splice(userIndex, 1);
-            return { ...comment, likes: comment.likes - 1, likedBy: newLikedBy };
-          } else {
-            return { 
-              ...comment, 
-              likes: comment.likes + 1, 
-              likedBy: [...likedByArray, currentUser.id] 
-            };
-          }
+    const updatedComments = comments.map(comment => {
+      if (comment.id === commentId) {
+        const likedByArray = comment.likedBy || [];
+        const userIndex = likedByArray.indexOf(currentUser.id);
+        
+        if (userIndex !== -1) {
+          const newLikedBy = [...likedByArray];
+          newLikedBy.splice(userIndex, 1);
+          return { ...comment, likes: comment.likes - 1, likedBy: newLikedBy };
+        } else {
+          return { 
+            ...comment, 
+            likes: comment.likes + 1, 
+            likedBy: [...likedByArray, currentUser.id] 
+          };
         }
-        return comment;
-      })
-    );
+      }
+      return comment;
+    });
+    setComments(updatedComments);
   };
 
   const handleAddComment = () => {
@@ -185,7 +422,8 @@ export default function PlaceDetail() {
       likedBy: []
     };
 
-    setComments((prevComments: Comment[]) => [...prevComments, comment]);
+    const updatedComments = [...comments, comment];
+    setComments(updatedComments);
     setNewComment('');
     setNewRating(5);
   };
@@ -194,6 +432,25 @@ export default function PlaceDetail() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Botón Volver */}
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Button
+            variant="ghost"
+            size="icon"
+            className="fixed top-4 left-4 z-50 bg-primary/20 hover:bg-primary/40 text-white rounded-full w-10 h-10 shadow-lg backdrop-blur-sm"
+            onClick={() => navigate('/explorar')}
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
+        </motion.div>
+      </AnimatePresence>
+
       {/* Hero Section */}
       <div className="relative h-[50vh] overflow-hidden">
         <img

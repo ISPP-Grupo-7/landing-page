@@ -26,6 +26,10 @@ type ExplorationCard = {
   id: string;
   title: string;
   location: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
   image: string;
   likes: number;
   comments: number;
@@ -37,6 +41,15 @@ type ExplorationCard = {
   rating: number;
   category: 'tendencias' | 'cercanos' | 'populares' | 'comunidad';
   description: string;
+  gallery: {
+    url: string;
+    author: string;
+    authorAvatar: string;
+    date: string;
+    isPremium: boolean;
+    description: string;
+  }[];
+  highlights: string[];
 };
 
 // Componentes
@@ -110,38 +123,72 @@ export default function Explore() {
       id: "1",
       title: "Ruta del Vino - Ribera del Duero",
       location: "Castilla y León, España",
+      coordinates: {
+        lat: 41.6167,
+        lng: -4.0833
+      },
       image: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
       likes: 324,
       comments: 45,
       author: "María G.",
       authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      tags: ["Gastronomía", "Cultura", "Vino"],
+      tags: ["Gastronomía", "Cultura", "Vino", "Enoturismo", "Historia"],
       date: "2024-02-15",
       duration: "3 días",
       rating: 4.8,
-      category: 'tendencias' as const,
-      description: "Descubre los mejores viñedos y bodegas de la región"
+      category: 'tendencias',
+      description: "Descubre los mejores viñedos y bodegas de la región. Un recorrido por la historia y la cultura del vino en una de las denominaciones de origen más prestigiosas de España.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
+          author: "María G.",
+          authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
+          date: "2024-02-15",
+          isPremium: true,
+          description: "Vista panorámica de los viñedos al atardecer"
+        }
+      ],
+      highlights: ["Catas de vino exclusivas", "Visitas a bodegas centenarias", "Gastronomía local"]
     },
     {
       id: "2",
       title: "Ruta de los Pueblos Blancos",
       location: "Andalucía, España",
-      image: "https://images.unsplash.com/photo-1596627116762-bb01a46c8161",
+      coordinates: {
+        lat: 36.7213,
+        lng: -5.3717
+      },
+      image: "https://images.unsplash.com/photo-1559060680-36abfac01944",
       likes: 567,
       comments: 89,
       author: "Carlos M.",
       authorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      tags: ["Pueblos", "Historia", "Arquitectura"],
+      tags: ["Pueblos", "Historia", "Arquitectura", "Cultura"],
       date: "2024-02-10",
       duration: "5 días",
       rating: 4.9,
-      category: 'populares' as const,
-      description: "Un recorrido por los pueblos más bonitos de Andalucía"
+      category: 'populares',
+      description: "Descubre la belleza de los pueblos blancos andaluces, con sus calles empedradas y casas encaladas.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1559060680-36abfac01944",
+          author: "Carlos M.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+          date: "2024-02-10",
+          isPremium: false,
+          description: "Vista de las calles empedradas y casas blancas"
+        }
+      ],
+      highlights: ["Arquitectura tradicional", "Vistas panorámicas", "Gastronomía local"]
     },
     {
       id: "3",
       title: "Camino de Santiago",
       location: "Varios, España",
+      coordinates: {
+        lat: 42.8805,
+        lng: -8.5456
+      },
       image: "https://images.unsplash.com/photo-1583318432730-a19c89692612",
       likes: 892,
       comments: 156,
@@ -151,13 +198,28 @@ export default function Explore() {
       date: "2024-02-01",
       duration: "30 días",
       rating: 5.0,
-      category: 'populares' as const,
-      description: "La ruta más emblemática de España"
+      category: 'populares',
+      description: "La ruta más emblemática de España, un camino de descubrimiento personal y cultural.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1583318432730-a19c89692612",
+          author: "Laura P.",
+          authorAvatar: "https://randomuser.me/api/portraits/women/22.jpg",
+          date: "2024-02-01",
+          isPremium: true,
+          description: "Peregrinos en el Camino Francés"
+        }
+      ],
+      highlights: ["Experiencia espiritual", "Patrimonio histórico", "Naturaleza impresionante"]
     },
     {
       id: "4",
       title: "Costa Brava en Velero",
       location: "Cataluña, España",
+      coordinates: {
+        lat: 41.9702,
+        lng: 3.2234
+      },
       image: "https://images.unsplash.com/photo-1534447677768-be436bb09401",
       likes: 423,
       comments: 67,
@@ -167,13 +229,28 @@ export default function Explore() {
       date: "2024-02-20",
       duration: "7 días",
       rating: 4.7,
-      category: 'cercanos' as const,
-      description: "Explora las calas más hermosas desde el mar"
+      category: 'cercanos',
+      description: "Explora las calas más hermosas desde el mar en una aventura única.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1534447677768-be436bb09401",
+          author: "Pablo R.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/28.jpg",
+          date: "2024-02-20",
+          isPremium: true,
+          description: "Navegando por la Costa Brava"
+        }
+      ],
+      highlights: ["Calas secretas", "Navegación", "Snorkel"]
     },
     {
       id: "5",
       title: "Ruta Gastronómica por San Sebastián",
       location: "País Vasco, España",
+      coordinates: {
+        lat: 43.3183,
+        lng: -1.9812
+      },
       image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
       likes: 756,
       comments: 134,
@@ -183,13 +260,28 @@ export default function Explore() {
       date: "2024-02-18",
       duration: "4 días",
       rating: 4.9,
-      category: 'tendencias' as const,
-      description: "Descubre la capital mundial de los pintxos"
+      category: 'tendencias',
+      description: "Descubre la capital mundial de los pintxos y su exquisita gastronomía.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+          author: "Elena M.",
+          authorAvatar: "https://randomuser.me/api/portraits/women/56.jpg",
+          date: "2024-02-18",
+          isPremium: false,
+          description: "Pintxos tradicionales vascos"
+        }
+      ],
+      highlights: ["Pintxos gourmet", "Restaurantes estrella Michelin", "Mercados locales"]
     },
     {
       id: "6",
       title: "Sierra de Gredos",
       location: "Ávila, España",
+      coordinates: {
+        lat: 40.2599,
+        lng: -5.1388
+      },
       image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
       likes: 345,
       comments: 78,
@@ -199,14 +291,29 @@ export default function Explore() {
       date: "2024-02-22",
       duration: "2 días",
       rating: 4.6,
-      category: 'cercanos' as const,
-      description: "Rutas de senderismo para todos los niveles"
+      category: 'cercanos',
+      description: "Descubre la majestuosidad de la Sierra de Gredos y sus rutas de montaña.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+          author: "Daniel F.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/62.jpg",
+          date: "2024-02-22",
+          isPremium: false,
+          description: "Vistas panorámicas de la sierra"
+        }
+      ],
+      highlights: ["Rutas de senderismo", "Fauna local", "Paisajes de montaña"]
     },
     {
       id: "7",
       title: "Festival de Las Fallas",
       location: "Valencia, España",
-      image: "https://images.unsplash.com/photo-1615913144233-8377ff34a598",
+      coordinates: {
+        lat: 39.4699,
+        lng: -0.3763
+      },
+      image: "https://images.unsplash.com/photo-1560986752-2e31d9507413",
       likes: 1203,
       comments: 245,
       author: "Ana V.",
@@ -215,14 +322,29 @@ export default function Explore() {
       date: "2024-03-15",
       duration: "5 días",
       rating: 4.9,
-      category: 'tendencias' as const,
-      description: "Vive la magia de las Fallas en primera persona"
+      category: 'tendencias',
+      description: "Vive la magia y el espectáculo de las Fallas valencianas.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1560986752-2e31d9507413",
+          author: "Ana V.",
+          authorAvatar: "https://randomuser.me/api/portraits/women/67.jpg",
+          date: "2024-03-15",
+          isPremium: true,
+          description: "Fuegos artificiales en la noche valenciana"
+        }
+      ],
+      highlights: ["Mascletás", "Fallas monumentales", "Ofrenda floral"]
     },
     {
       id: "8",
       title: "Ruta del Modernismo",
       location: "Barcelona, España",
-      image: "https://images.unsplash.com/photo-1583779457094-ab6f0d218d83",
+      coordinates: {
+        lat: 41.3851,
+        lng: 2.1734
+      },
+      image: "https://images.unsplash.com/photo-1617178851416-16180c2dddd6",
       likes: 678,
       comments: 98,
       author: "Marc B.",
@@ -231,13 +353,28 @@ export default function Explore() {
       date: "2024-03-10",
       duration: "3 días",
       rating: 4.8,
-      category: 'populares' as const,
-      description: "Descubre las joyas arquitectónicas de Gaudí"
+      category: 'populares',
+      description: "Explora las joyas arquitectónicas del modernismo catalán.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1617178851416-16180c2dddd6",
+          author: "Marc B.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/75.jpg",
+          date: "2024-03-10",
+          isPremium: true,
+          description: "Detalles modernistas de la Casa Batlló"
+        }
+      ],
+      highlights: ["Obras de Gaudí", "Casa Batlló", "Palau de la Música"]
     },
     {
       id: "9",
       title: "Aventura en Picos de Europa",
       location: "Asturias, España",
+      coordinates: {
+        lat: 43.1937,
+        lng: -4.8333
+      },
       image: "https://images.unsplash.com/photo-1513311068348-19c8fbdc0bb6",
       likes: 892,
       comments: 167,
@@ -247,13 +384,28 @@ export default function Explore() {
       date: "2024-03-05",
       duration: "4 días",
       rating: 4.9,
-      category: 'tendencias' as const,
-      description: "Senderismo y escalada en el parque nacional"
+      category: 'tendencias',
+      description: "Aventúrate en uno de los parques nacionales más espectaculares.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1513311068348-19c8fbdc0bb6",
+          author: "Roberto A.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/89.jpg",
+          date: "2024-03-05",
+          isPremium: true,
+          description: "Vistas del Naranjo de Bulnes"
+        }
+      ],
+      highlights: ["Naranjo de Bulnes", "Lagos de Covadonga", "Rutas de montaña"]
     },
     {
       id: "10",
       title: "Semana Santa en Sevilla",
       location: "Sevilla, España",
+      coordinates: {
+        lat: 37.3891,
+        lng: -5.9845
+      },
       image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b",
       likes: 1456,
       comments: 289,
@@ -263,8 +415,19 @@ export default function Explore() {
       date: "2024-03-20",
       duration: "7 días",
       rating: 5.0,
-      category: 'tendencias' as const,
-      description: "Vive la pasión de la Semana Santa sevillana"
+      category: 'tendencias',
+      description: "Vive la pasión y el fervor de la Semana Santa sevillana.",
+      gallery: [
+        {
+          url: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b",
+          author: "Carmen S.",
+          authorAvatar: "https://randomuser.me/api/portraits/women/91.jpg",
+          date: "2024-03-20",
+          isPremium: true,
+          description: "Procesión nocturna en el centro histórico"
+        }
+      ],
+      highlights: ["Procesiones", "Arte sacro", "Tradiciones centenarias"]
     }
   ], []); // Array vacío porque los datos son constantes
 
