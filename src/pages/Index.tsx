@@ -41,7 +41,7 @@ export default function Index() {
         />
         <div className="relative z-10 container mx-auto px-4 text-center animate-fade-up">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Transforma tus
+            Descubre tus
             <span className="text-primary"> viajes</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">

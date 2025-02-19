@@ -10,8 +10,8 @@ import Register from "./pages/Register";
 import Plan from "@/pages/Plan";
 import Explore from "./pages/Explore";
 import NotFound from "./pages/NotFound";
-import PlaceDetail from "@/pages/PlaceDetail";
 import Download from "@/pages/Download";
+import { Resources } from "@/pages/Resources";
 
 // Legal Pages
 import TermsAndConditions from "@/pages/legal/TermsAndConditions";
@@ -46,7 +46,7 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/plan" element={<Plan />} />
             <Route path="/explorar" element={<Explore />} />
-            <Route path="/lugar/:id" element={<PlaceDetail />} />
+            <Route path="/recursos" element={<Resources />} />
             <Route path="/download" element={<Download />} />
             
             {/* Legal Routes */}
