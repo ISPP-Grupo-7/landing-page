@@ -17,7 +17,8 @@ import {
   Send,
   Image as ImageIcon,
   Map,
-  Crown
+  Crown,
+  X
 } from "lucide-react";
 import { ExplorationCard } from "@/types/explore";
 import { ImageSlider } from "@/components/ui/image-slider";
@@ -32,6 +33,7 @@ type Comment = {
   rating: number;
   date: string;
   likes: number;
+  likedBy: string[];
 };
 
 export default function PlaceDetail() {
@@ -66,12 +68,12 @@ export default function PlaceDetail() {
       comments: 45,
       author: "María G.",
       authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      tags: ["Gastronomía", "Cultura", "Vino"],
+      tags: ["Gastronomía", "Cultura", "Vino", "Enoturismo", "Historia"],
       date: "2024-02-15",
       duration: "3 días",
       rating: 4.8,
       category: 'tendencias',
-      description: "Descubre los mejores viñedos y bodegas de la región. Un recorrido por la historia y la cultura del vino en una de las denominaciones de origen más prestigiosas de España. Visita bodegas centenarias, participa en catas exclusivas y disfruta de la gastronomía local.",
+      description: "Descubre los mejores viñedos y bodegas de la región. Un recorrido por la historia y la cultura del vino en una de las denominaciones de origen más prestigiosas de España. Visita bodegas centenarias, participa en catas exclusivas y disfruta de la gastronomía local. Esta ruta te llevará por los paisajes más emblemáticos de la Ribera del Duero, donde podrás conocer de primera mano el proceso de elaboración del vino y su importancia en la cultura local.",
       gallery: [
         {
           url: "https://images.unsplash.com/photo-1528323273322-d81458248d40",
@@ -96,43 +98,96 @@ export default function PlaceDetail() {
           date: "2024-02-13",
           isPremium: true,
           description: "Barricas de roble en la sala de envejecimiento"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1578911373434-0cb395d2cbfb",
+          author: "Pedro S.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/45.jpg",
+          date: "2024-02-12",
+          isPremium: true,
+          description: "Degustación de vinos y tapas locales"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea",
+          author: "Ana R.",
+          authorAvatar: "https://randomuser.me/api/portraits/women/67.jpg",
+          date: "2024-02-11",
+          isPremium: false,
+          description: "Viñedos en primavera con el castillo de Peñafiel al fondo"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1507434965515-61775ba49a61",
+          author: "Juan M.",
+          authorAvatar: "https://randomuser.me/api/portraits/men/78.jpg",
+          date: "2024-02-10",
+          isPremium: true,
+          description: "Experiencia de vendimia tradicional"
         }
       ],
       highlights: [
-        "Visitas guiadas a bodegas históricas",
-        "Catas de vino premium",
-        "Alojamiento en hoteles boutique",
-        "Gastronomía local de primera calidad"
+        "Visitas guiadas a bodegas históricas con más de 100 años de antigüedad",
+        "Catas de vino premium con sumilleres expertos",
+        "Alojamiento en hoteles boutique con encanto entre viñedos",
+        "Gastronomía local de primera calidad maridada con vinos de la región",
+        "Experiencias únicas como la vendimia tradicional o talleres de cata",
+        "Visita al Museo del Vino en el Castillo de Peñafiel",
+        "Recorridos en bicicleta por los viñedos",
+        "Cenas exclusivas en bodegas subterráneas medievales"
       ]
     });
   }, [id]);
+
+  const handleDeleteComment = (commentId: string) => {
+    if (window.confirm('¿Estás seguro de que quieres eliminar este comentario?')) {
+      setComments((prevComments: Comment[]) => 
+        prevComments.filter(comment => comment.id !== commentId)
+      );
+    }
+  };
+
+  const handleLikeComment = (commentId: string) => {
+    setComments((prevComments: Comment[]) => 
+      prevComments.map(comment => {
+        if (comment.id === commentId) {
+          const likedByArray = comment.likedBy || [];
+          const userIndex = likedByArray.indexOf(currentUser.id);
+          
+          if (userIndex !== -1) {
+            const newLikedBy = [...likedByArray];
+            newLikedBy.splice(userIndex, 1);
+            return { ...comment, likes: comment.likes - 1, likedBy: newLikedBy };
+          } else {
+            return { 
+              ...comment, 
+              likes: comment.likes + 1, 
+              likedBy: [...likedByArray, currentUser.id] 
+            };
+          }
+        }
+        return comment;
+      })
+    );
+  };
 
   const handleAddComment = () => {
     if (!newComment.trim()) return;
 
     const comment: Comment = {
       id: Date.now().toString(),
-      placeId: id!,
+      placeId: id || '',
       userId: currentUser.id,
       userName: currentUser.name,
       userAvatar: currentUser.avatar,
       content: newComment,
       rating: newRating,
       date: new Date().toISOString(),
-      likes: 0
+      likes: 0,
+      likedBy: []
     };
 
-    setComments([...comments, comment]);
+    setComments((prevComments: Comment[]) => [...prevComments, comment]);
     setNewComment('');
     setNewRating(5);
-  };
-
-  const handleLikeComment = (commentId: string) => {
-    setComments(comments.map(comment => 
-      comment.id === commentId 
-        ? { ...comment, likes: comment.likes + 1 }
-        : comment
-    ));
   };
 
   if (!place) return <div>Cargando...</div>;
@@ -308,44 +363,57 @@ export default function PlaceDetail() {
               </div>
 
               {/* Comments List */}
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {comments
                   .filter(comment => comment.placeId === id)
-                  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                   .map((comment) => (
-                    <div key={comment.id} className="flex gap-4 p-4 rounded-lg hover:bg-gray-50">
-                      <img
-                        src={comment.userAvatar}
-                        alt={comment.userName}
-                        className="w-10 h-10 rounded-full"
-                      />
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
+                    <div key={comment.id} className="glass-panel p-4 rounded-lg">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <img 
+                            src={comment.userAvatar} 
+                            alt={comment.userName}
+                            className="w-10 h-10 rounded-full"
+                          />
                           <div>
                             <p className="font-medium">{comment.userName}</p>
-                            <div className="flex items-center gap-2">
-                              <div className="flex">
-                                {Array.from({ length: comment.rating }).map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                                  />
-                                ))}
-                              </div>
-                              <span className="text-sm text-gray-500">
-                                {new Date(comment.date).toLocaleDateString()}
-                              </span>
-                            </div>
+                            <p className="text-sm text-gray-500">
+                              {new Date(comment.date).toLocaleDateString()}
+                            </p>
                           </div>
-                          <button
-                            onClick={() => handleLikeComment(comment.id)}
-                            className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors"
-                          >
-                            <ThumbsUp className="w-4 h-4" />
-                            <span className="text-sm">{comment.likes}</span>
-                          </button>
                         </div>
-                        <p className="text-gray-600">{comment.content}</p>
+                        <div className="flex items-center gap-4">
+                          <div className="flex">
+                            {[...Array(comment.rating)].map((_, i) => (
+                              <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                            ))}
+                          </div>
+                          {comment.userId === currentUser.id && (
+                            <button
+                              onClick={() => handleDeleteComment(comment.id)}
+                              className="text-red-500 hover:text-red-600 transition-colors"
+                            >
+                              <X className="w-5 h-5" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-gray-700 mb-3">{comment.content}</p>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleLikeComment(comment.id)}
+                          className={`flex items-center gap-1 px-3 py-1 rounded-full transition-colors ${
+                            comment.likedBy?.includes(currentUser.id)
+                              ? 'bg-primary/10 text-primary'
+                              : 'text-gray-600 hover:text-primary'
+                          }`}
+                          disabled={comment.userId === currentUser.id}
+                        >
+                          <ThumbsUp className={`w-4 h-4 ${
+                            comment.likedBy?.includes(currentUser.id) ? 'fill-current' : ''
+                          }`} />
+                          {comment.likes}
+                        </button>
                       </div>
                     </div>
                   ))}

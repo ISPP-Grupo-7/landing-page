@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Menu, Download } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -38,7 +39,11 @@ export default function Layout() {
               to="/" 
               className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
             >
-              <MapPin className="w-6 h-6 text-[#40CEB5]" />
+              <img 
+                src="/favicon.svg" 
+                alt="MapYourWorld Logo" 
+                className="w-6 h-6" 
+              />
               <span className="font-bold text-xl">MapYourWorld</span>
             </Link>
 
@@ -153,7 +158,17 @@ export default function Layout() {
       </header>
 
       <main className="pt-16">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );

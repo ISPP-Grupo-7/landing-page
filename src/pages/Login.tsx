@@ -20,7 +20,11 @@ export default function Login() {
       <div className="w-full max-w-md p-6 relative z-10 glass-panel hover:scale-[1.01] transition-transform duration-500 ease-out animate-in fade-in slide-in-from-bottom-4">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-6 hover:scale-105 transition-transform">
-            <MapPin className="w-8 h-8 text-[#40CEB5]" />
+            <img 
+              src="/favicon.svg" 
+              alt="MapYourWorld Logo" 
+              className="w-8 h-8" 
+            />
             <span className="text-2xl font-bold">MapYourWorld</span>
           </Link>
           <h1 className="text-2xl font-semibold text-gray-900 mb-2">Bienvenido de nuevo</h1>

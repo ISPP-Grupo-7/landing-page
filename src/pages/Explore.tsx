@@ -16,9 +16,10 @@ import {
   Star,
   Clock
 } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Tipos
 type ExplorationCard = {
@@ -38,26 +39,73 @@ type ExplorationCard = {
   description: string;
 };
 
+// Componentes
+const LikeButton = ({ 
+  cardId, 
+  initialLikes, 
+  isLiked, 
+  onLike 
+}: { 
+  cardId: string; 
+  initialLikes: number; 
+  isLiked: boolean; 
+  onLike: (id: string) => void;
+}) => {
+  const buttonClass = isLiked ? 'text-red-500' : 'text-gray-600 hover:text-primary';
+  const heartIconClass = `w-5 h-5 ${isLiked ? 'fill-current' : ''}`;
+  const totalLikes = initialLikes + (isLiked ? 1 : 0);
+
+  return (
+    <button 
+      className={`flex items-center gap-1 transition-colors ${buttonClass}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        onLike(cardId);
+      }}
+    >
+      <Heart className={heartIconClass} />
+      {totalLikes}
+    </button>
+  );
+};
+
 export default function Explore() {
   const navigate = useNavigate();
-  // Estados
-  const [activeFilter, setActiveFilter] = useState<string>('tendencias');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    // Limpiar la caché al montar
+    const navigationEntries = performance.getEntriesByType('navigation');
+    const isReload = navigationEntries.length > 0 && 
+      (navigationEntries[0] as PerformanceNavigationTiming).type === 'reload';
+    
+    if (isReload) {
+      sessionStorage.clear();
+      localStorage.removeItem('likedPosts');
+    }
+  }, []);
+
+  // Estados simplificados
+  const [activeFilter, setActiveFilter] = useState('tendencias');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [likedPosts, setLikedPosts] = useState(new Set());
   const [showWarning, setShowWarning] = useState(true);
-  const debouncedSearch = useDebounce(searchQuery, 300);
+  const debouncedSearch = useDebounce(searchQuery, 1000);
+
+  // Manejar cambio de filtro
+  const handleFilterChange = useCallback((filterId: string) => {
+    setActiveFilter(filterId);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowWarning(false);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
 
   // Datos de ejemplo expandidos
-  const allExplorationCards: ExplorationCard[] = [
+  const allExplorationCards = useMemo((): ExplorationCard[] => [
     {
       id: "1",
       title: "Ruta del Vino - Ribera del Duero",
@@ -71,7 +119,7 @@ export default function Explore() {
       date: "2024-02-15",
       duration: "3 días",
       rating: 4.8,
-      category: 'tendencias',
+      category: 'tendencias' as const,
       description: "Descubre los mejores viñedos y bodegas de la región"
     },
     {
@@ -87,7 +135,7 @@ export default function Explore() {
       date: "2024-02-10",
       duration: "5 días",
       rating: 4.9,
-      category: 'populares',
+      category: 'populares' as const,
       description: "Un recorrido por los pueblos más bonitos de Andalucía"
     },
     {
@@ -103,7 +151,7 @@ export default function Explore() {
       date: "2024-02-01",
       duration: "30 días",
       rating: 5.0,
-      category: 'populares',
+      category: 'populares' as const,
       description: "La ruta más emblemática de España"
     },
     {
@@ -119,7 +167,7 @@ export default function Explore() {
       date: "2024-02-20",
       duration: "7 días",
       rating: 4.7,
-      category: 'cercanos',
+      category: 'cercanos' as const,
       description: "Explora las calas más hermosas desde el mar"
     },
     {
@@ -135,7 +183,7 @@ export default function Explore() {
       date: "2024-02-18",
       duration: "4 días",
       rating: 4.9,
-      category: 'tendencias',
+      category: 'tendencias' as const,
       description: "Descubre la capital mundial de los pintxos"
     },
     {
@@ -151,10 +199,74 @@ export default function Explore() {
       date: "2024-02-22",
       duration: "2 días",
       rating: 4.6,
-      category: 'cercanos',
+      category: 'cercanos' as const,
       description: "Rutas de senderismo para todos los niveles"
+    },
+    {
+      id: "7",
+      title: "Festival de Las Fallas",
+      location: "Valencia, España",
+      image: "https://images.unsplash.com/photo-1615913144233-8377ff34a598",
+      likes: 1203,
+      comments: 245,
+      author: "Ana V.",
+      authorAvatar: "https://randomuser.me/api/portraits/women/67.jpg",
+      tags: ["Cultura", "Festivales", "Arte"],
+      date: "2024-03-15",
+      duration: "5 días",
+      rating: 4.9,
+      category: 'tendencias' as const,
+      description: "Vive la magia de las Fallas en primera persona"
+    },
+    {
+      id: "8",
+      title: "Ruta del Modernismo",
+      location: "Barcelona, España",
+      image: "https://images.unsplash.com/photo-1583779457094-ab6f0d218d83",
+      likes: 678,
+      comments: 98,
+      author: "Marc B.",
+      authorAvatar: "https://randomuser.me/api/portraits/men/75.jpg",
+      tags: ["Arquitectura", "Arte", "Ciudad"],
+      date: "2024-03-10",
+      duration: "3 días",
+      rating: 4.8,
+      category: 'populares' as const,
+      description: "Descubre las joyas arquitectónicas de Gaudí"
+    },
+    {
+      id: "9",
+      title: "Aventura en Picos de Europa",
+      location: "Asturias, España",
+      image: "https://images.unsplash.com/photo-1513311068348-19c8fbdc0bb6",
+      likes: 892,
+      comments: 167,
+      author: "Roberto A.",
+      authorAvatar: "https://randomuser.me/api/portraits/men/89.jpg",
+      tags: ["Montaña", "Aventura", "Naturaleza"],
+      date: "2024-03-05",
+      duration: "4 días",
+      rating: 4.9,
+      category: 'tendencias' as const,
+      description: "Senderismo y escalada en el parque nacional"
+    },
+    {
+      id: "10",
+      title: "Semana Santa en Sevilla",
+      location: "Sevilla, España",
+      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b",
+      likes: 1456,
+      comments: 289,
+      author: "Carmen S.",
+      authorAvatar: "https://randomuser.me/api/portraits/women/91.jpg",
+      tags: ["Cultura", "Religión", "Tradición"],
+      date: "2024-03-20",
+      duration: "7 días",
+      rating: 5.0,
+      category: 'tendencias' as const,
+      description: "Vive la pasión de la Semana Santa sevillana"
     }
-  ];
+  ], []); // Array vacío porque los datos son constantes
 
   // Filtros
   const filters = [
@@ -186,43 +298,54 @@ export default function Explore() {
     }
   ];
 
+  // Función para normalizar texto (quitar tildes y convertir a minúsculas)
+  const normalizeText = (text: string) => {
+    return text.normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+  };
+
+  // Funciones auxiliares para filtrado
+  const matchesSearchCriteria = (card: ExplorationCard, normalizedSearch: string) => {
+    if (!normalizedSearch) return true;
+    
+    return normalizeText(card.title).includes(normalizedSearch) ||
+           normalizeText(card.location).includes(normalizedSearch) ||
+           card.tags.some(tag => normalizeText(tag).includes(normalizedSearch));
+  };
+
+  const sortByFilter = (a: ExplorationCard, b: ExplorationCard) => {
+    switch (activeFilter) {
+      case 'populares':
+        return b.likes - a.likes;
+      case 'tendencias':
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      default:
+        return 0;
+    }
+  };
+
   // Filtrar y buscar explorations
   const filteredExplorations = useMemo(() => {
+    const normalizedSearch = normalizeText(debouncedSearch);
     return allExplorationCards
       .filter(card => {
-        if (activeFilter !== 'todos') {
-          const matchesFilter = card.category === activeFilter;
-          const matchesSearch = debouncedSearch
-            ? card.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-              card.location.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-              card.tags.some(tag => tag.toLowerCase().includes(debouncedSearch.toLowerCase()))
-            : true;
-          return matchesFilter && matchesSearch;
-        }
-        return debouncedSearch
-          ? card.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-            card.location.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-            card.tags.some(tag => tag.toLowerCase().includes(debouncedSearch.toLowerCase()))
-          : true;
+        if (activeFilter === 'todos') return true;
+        return card.category === activeFilter;
       })
-      .sort((a, b) => {
-        if (activeFilter === 'populares') return b.likes - a.likes;
-        if (activeFilter === 'tendencias') return new Date(b.date).getTime() - new Date(a.date).getTime();
-        return 0;
-      });
-  }, [activeFilter, debouncedSearch]);
+      .filter(card => matchesSearchCriteria(card, normalizedSearch))
+      .sort(sortByFilter);
+  }, [activeFilter, debouncedSearch, allExplorationCards]);
 
-  // Simular carga al cambiar filtros
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [activeFilter]);
+  const handleCardClick = useCallback((id: string) => {
+    // Prevenir la navegación si estamos en proceso de filtrado
+    if (debouncedSearch !== searchQuery) return;
+    navigate(`/lugar/${id}`);
+  }, [navigate, debouncedSearch, searchQuery]);
 
-  // Manejar likes
-  const handleLike = (cardId: string) => {
+  // Manejar likes de manera optimizada
+  const handleLike = useCallback((cardId: string) => {
     setLikedPosts(prev => {
       const newLikedPosts = new Set(prev);
       if (newLikedPosts.has(cardId)) {
@@ -232,49 +355,71 @@ export default function Explore() {
       }
       return newLikedPosts;
     });
-  };
+  }, []);
 
-  // Manejar compartir
-  const handleShare = (card: ExplorationCard) => {
+  // Manejar compartir de manera optimizada
+  const handleShare = useCallback((card: ExplorationCard) => {
     if (navigator.share) {
       navigator.share({
         title: card.title,
         text: card.description,
         url: window.location.href
-      }).catch(console.error);
-    } else {
-      // Fallback para navegadores que no soportan Web Share API
-      console.log('Compartir no está disponible');
+      }).catch(() => {
+        console.log('Error al compartir');
+      });
     }
-  };
-
-  const handleCardClick = (id: string) => {
-    navigate(`/lugar/${id}`);
-  };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      {showWarning && (
-        <div className="fixed top-20 left-0 right-0 z-50 bg-yellow-100/95 text-yellow-800 px-4 py-8 text-center animate-fade-out backdrop-blur-sm border-y-2 border-yellow-300 shadow-lg">
-          <div className="container mx-auto">
-            <div className="text-3xl md:text-5xl font-bold flex items-center justify-center gap-4">
-              <span role="img" aria-label="warning" className="text-4xl md:text-6xl">⚠️</span>
-              <span>Módulo Demostrativo desarrollado a medias</span>
+    <div className="min-h-screen relative">
+      <AnimatePresence>
+        {showWarning && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-0 left-0 right-0 z-50 bg-yellow-400 text-black py-4 text-center shadow-lg"
+          >
+            <div className="container mx-auto px-4">
+              <p className="text-2xl font-bold">
+                🚧 Módulo de demostración en proceso
+              </p>
             </div>
-          </div>
-        </div>
-      )}
-      {/* Hero Search Section */}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.2 }}
+        transition={{ duration: 0.2 }}
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center parallax-bg"
+      />
       <section className="relative py-20 bg-gradient-to-b from-primary/10 to-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.1 }}
+          className="container mx-auto px-4"
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 0.15 }}
+            className="max-w-4xl mx-auto text-center mb-8"
+          >
             <h1 className="text-4xl font-bold mb-4">Explora Nuevas Aventuras</h1>
             <p className="text-xl text-gray-600">
               Descubre lugares increíbles y conecta con otros viajeros
             </p>
-          </div>
+          </motion.div>
           
-          <div className="max-w-2xl mx-auto flex gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 0.2 }}
+            className="max-w-2xl mx-auto flex gap-4"
+          >
             <div className="flex-1 relative">
               <Input
                 type="text"
@@ -289,22 +434,27 @@ export default function Explore() {
               <Filter className="w-5 h-5 mr-2" />
               Filtros
             </Button>
-          </div>
+          </motion.div>
 
-          <div className="flex justify-center gap-4 mt-8 flex-wrap">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 0.25 }}
+            className="flex justify-center gap-4 mt-8 flex-wrap"
+          >
             {filters.map((filter) => (
               <Button
                 key={filter.id}
                 variant={activeFilter === filter.id ? "default" : "outline"}
                 className="h-10 px-4 flex items-center gap-2"
-                onClick={() => setActiveFilter(filter.id)}
+                onClick={() => handleFilterChange(filter.id)}
               >
                 <filter.icon className="w-4 h-4" />
                 {filter.name}
               </Button>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Main Content */}
@@ -312,19 +462,22 @@ export default function Explore() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Left Column - Trending Explorations */}
-            <div className="lg:col-span-2 space-y-8">
-              <h2 className="text-2xl font-bold mb-6">Exploraciones Destacadas</h2>
-              {isLoading ? (
-                <div className="space-y-4">
-                  {[1, 2, 3].map((n) => (
-                    <div key={n} className="animate-pulse">
-                      <div className="h-64 bg-gray-200 rounded-xl mb-4" />
-                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
-                      <div className="h-4 bg-gray-200 rounded w-1/2" />
-                    </div>
-                  ))}
-                </div>
-              ) : filteredExplorations.length > 0 ? (
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2, delay: 0.3 }}
+              className="lg:col-span-2 space-y-8"
+            >
+              <motion.h2 
+                key={activeFilter}
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.3 }}
+                className="text-2xl font-bold mb-6"
+              >
+                Exploraciones en {filters.find(f => f.id === activeFilter)?.name}
+              </motion.h2>
+              {filteredExplorations.length > 0 ? (
                 filteredExplorations.map((card) => (
                   <div
                     key={card.id}
@@ -367,22 +520,12 @@ export default function Explore() {
                           <span className="font-medium">{card.author}</span>
                         </div>
                         <div className="flex items-center gap-4">
-                          <button 
-                            className={`flex items-center gap-1 transition-colors ${
-                              likedPosts.has(card.id) 
-                                ? 'text-red-500' 
-                                : 'text-gray-600 hover:text-primary'
-                            }`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleLike(card.id);
-                            }}
-                          >
-                            <Heart 
-                              className={`w-5 h-5 ${likedPosts.has(card.id) ? 'fill-current' : ''}`} 
-                            />
-                            {card.likes + (likedPosts.has(card.id) ? 1 : 0)}
-                          </button>
+                          <LikeButton
+                            cardId={card.id}
+                            initialLikes={card.likes}
+                            isLiked={likedPosts.has(card.id)}
+                            onLike={handleLike}
+                          />
                           <button className="flex items-center gap-1 text-gray-600 hover:text-primary transition-colors">
                             <MessageCircle className="w-5 h-5" />
                             {card.comments}
@@ -416,10 +559,15 @@ export default function Explore() {
                   <p className="text-gray-600">No se encontraron resultados para tu búsqueda.</p>
                 </div>
               )}
-            </div>
+            </motion.div>
 
             {/* Right Column - Achievements & Suggestions */}
-            <div className="space-y-8">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2, delay: 0.35 }}
+              className="space-y-8"
+            >
               <div className="glass-panel p-6 rounded-xl">
                 <h3 className="text-xl font-bold mb-4">Tus Logros</h3>
                 <div className="space-y-4">
@@ -465,7 +613,7 @@ export default function Explore() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
