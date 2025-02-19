@@ -1,10 +1,32 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Navigation, Trophy, Users } from "lucide-react";
+import { MapPin, Navigation, Trophy, Users, Mail, Users2, MessageSquare, UserCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+
+  const pilotUsers = [
+    {
+      icon: Users2,
+      title: "Comunidades de Viajeros",
+      description: "Usuarios activos en redes sociales como Instagram y Facebook que comparten experiencias y recomendaciones de viaje.",
+      detail: "Su participación e interés en descubrir nuevos destinos los convierte en candidatos ideales para evaluar la experiencia de exploración y gamificación."
+    },
+    {
+      icon: MessageSquare,
+      title: "Foros de Viajes",
+      description: "Participantes de TripAdvisor, Los Viajeros y otros foros especializados en turismo.",
+      detail: "Su conocimiento y experiencia permitirán identificar áreas de mejora y aportar feedback constructivo sobre funcionalidades."
+    },
+    {
+      icon: UserCheck,
+      title: "Redes Personales",
+      description: "Familiares y amigos amantes de los viajes, con diversos niveles de experiencia tecnológica.",
+      detail: "La confianza existente facilita la obtención de feedback honesto y ayuda a evaluar la usabilidad para un público amplio."
+    }
+  ];
 
   return (
     <div className="min-h-screen">
@@ -23,7 +45,7 @@ export default function Index() {
             <Button
               size="lg"
               className="btn-primary"
-              onClick={() => console.log("Registro")}
+              onClick={() => navigate("/register")}
             >
               Comenzar ahora
             </Button>
@@ -31,9 +53,9 @@ export default function Index() {
               variant="outline"
               size="lg"
               className="btn-secondary"
-              onClick={() => console.log("Más información")}
+              onClick={() => navigate("/login")}
             >
-              Saber más
+              Iniciar sesión
             </Button>
           </div>
         </div>
@@ -89,6 +111,61 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Pilot Users Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Usuarios Piloto</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Buscamos personas motivadas que prueben la aplicación y brinden retroalimentación valiosa antes del lanzamiento final.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {pilotUsers.map((user, index) => (
+              <div
+                key={index}
+                className="glass-panel p-8 rounded-xl hover:scale-[1.02] transition-all duration-300"
+              >
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+                  <user.icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-center mb-4">{user.title}</h3>
+                <p className="text-gray-600 mb-4 text-center">{user.description}</p>
+                <p className="text-sm text-gray-500 text-center">{user.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 max-w-4xl mx-auto">
+            <div className="glass-panel p-8 rounded-xl">
+              <h3 className="text-2xl font-bold mb-6 text-center">Proceso de Participación</h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <Mail className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold mb-2">Canal de Comunicación</h4>
+                    <p className="text-gray-600">El correo electrónico será nuestra herramienta principal de comunicación con los usuarios piloto.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <Navigation className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold mb-2">Procedimiento</h4>
+                    <p className="text-gray-600">
+                      1. Registro inicial mediante correo electrónico<br />
+                      2. Envío de instrucciones detalladas<br />
+                      3. Pruebas periódicas con formularios de feedback<br />
+                      4. Seguimiento y soporte continuo
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-primary/10 to-secondary/10">
         <div className="container mx-auto px-4 text-center">
@@ -101,7 +178,7 @@ export default function Index() {
           <Button
             size="lg"
             className="btn-primary"
-            onClick={() => console.log("Registro")}
+            onClick={() => navigate("/register")}
           >
             Crear cuenta gratis
           </Button>

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,7 +7,11 @@ import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Plan from "./pages/Plan";
+import Explore from "./pages/Explore";
 import NotFound from "./pages/NotFound";
+import PlaceDetail from "@/pages/PlaceDetail";
+import Download from "@/pages/Download";
 
 const queryClient = new QueryClient();
 
@@ -19,10 +22,16 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout><Index /></Layout>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/plan" element={<Plan />} />
+            <Route path="/explorar" element={<Explore />} />
+            <Route path="/lugar/:id" element={<PlaceDetail />} />
+            <Route path="/download" element={<Download />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
