@@ -4,6 +4,7 @@ import { MapPin, Menu, Download } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { Footer } from "@/components/layout/footer/Footer";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -66,8 +67,10 @@ export default function Layout() {
               <Button 
                 variant="ghost"
                 className={cn(
-                  "nav-link",
-                  isActive('/download') && "text-primary bg-primary/10"
+                  "nav-link px-3 py-2 rounded-md transition-colors",
+                  isActive('/download')
+                    ? "text-primary font-medium bg-primary/10"
+                    : "text-gray-600 hover:text-primary hover:bg-primary/5"
                 )}
                 onClick={() => navigate("/download")}
               >
@@ -76,8 +79,10 @@ export default function Layout() {
               <Button 
                 variant="ghost" 
                 className={cn(
-                  "nav-link",
-                  isActive('/login') && "text-primary bg-primary/10"
+                  "nav-link px-3 py-2 rounded-md transition-colors",
+                  isActive('/login')
+                    ? "text-primary font-medium bg-primary/10"
+                    : "text-gray-600 hover:text-primary hover:bg-primary/5"
                 )}
                 onClick={() => navigate("/login")}
               >
@@ -125,7 +130,12 @@ export default function Layout() {
               ))}
               <Button 
                 variant="ghost" 
-                className="w-full justify-start"
+                className={cn(
+                  "w-full justify-start px-4 py-2 rounded-md transition-colors",
+                  isActive('/download')
+                    ? "text-primary font-medium bg-primary/10"
+                    : "text-gray-600 hover:text-primary hover:bg-primary/5"
+                )}
                 onClick={() => {
                   navigate("/download");
                   setIsMenuOpen(false);
@@ -135,7 +145,12 @@ export default function Layout() {
               </Button>
               <Button 
                 variant="ghost" 
-                className="w-full justify-start"
+                className={cn(
+                  "w-full justify-start px-4 py-2 rounded-md transition-colors",
+                  isActive('/login')
+                    ? "text-primary font-medium bg-primary/10"
+                    : "text-gray-600 hover:text-primary hover:bg-primary/5"
+                )}
                 onClick={() => {
                   navigate("/login");
                   setIsMenuOpen(false);
@@ -170,6 +185,8 @@ export default function Layout() {
           </motion.div>
         </AnimatePresence>
       </main>
+
+      <Footer />
     </div>
   );
 }
