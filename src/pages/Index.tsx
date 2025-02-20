@@ -43,7 +43,7 @@ export default function Index() {
     "public/mockups/menumapascolaborativos-myw.png",
     "public/mockups/opcionesmapascolaborativos-myw.png",
     "public/mockups/mapascreados-myw.png",
-    "public/mockups/creacióndemapascolaborativos-myw.png",
+    "public/creacióndemapascolaborativos-myw.png",
     "public/mockups/invitaciónmapacolaborativo-myw.png",
     "public/mockups/mapacolaborativo-myw.png"
   ];
