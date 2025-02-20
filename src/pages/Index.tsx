@@ -32,20 +32,20 @@ export default function Index() {
 
 
   const carouselImages = [
-    "public/mockups/Inicio-myw.png",
-    "public/mockups/Crear cuenta-myw.png",
-    "public/mockups/InicioSesion-myw.png",
-    "public/mockups/Descubrimiento1-myw.png",
-    "public/mockups/Zona de descubrimiento 2.png",
-    "public/mockups/Puntos de interés de la zona descubierta-myw.png",
-    "public/mockups/Descubrimiento de las zonas 3-myw.png",
-    "public/mockups/Registro de puntos de interés-myw.png",
-    "public/mockups/Menu mapas colaborativos -myw.png",
-    "public/mockups/Opciones mapas colaborativos-myw.png",
-    "public/mockups/Mapas creados-myw.png",
-    "public/mockups/Creación de mapas colaborativos-myw.png",
-    "public/mockups/invitación mapa colaborativo-myw.png",
-    "public/mockups/mapa colaborativo-myw.png"
+    "public/mockups/inicio-myw.png",
+    "public/mockups/crearcuenta-myw.png",
+    "public/mockups/iniciosesion-myw.png",
+    "public/mockups/descubrimiento1-myw.png",
+    "public/mockups/zonadedescubrimiento2.png",
+    "public/mockups/puntosdeinterésdelazonadescubierta-myw.png",
+    "public/mockups/descubrimientodelaszonas3-myw.png",
+    "public/mockups/registrodepuntosdeinterés-myw.png",
+    "public/mockups/menumapascolaborativos-myw.png",
+    "public/mockups/opcionesmapascolaborativos-myw.png",
+    "public/mockups/mapascreados-myw.png",
+    "public/mockups/creacióndemapascolaborativos-myw.png",
+    "public/mockups/invitaciónmapacolaborativo-myw.png",
+    "public/mockups/mapacolaborativo-myw.png"
   ];
   return (
     <div className="min-h-screen">
