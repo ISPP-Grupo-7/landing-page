@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Navigation, Trophy, Users, Mail, Users2, MessageSquare, UserCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Carousel from "@/components/ui/carrusel-imagenes";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,6 +30,23 @@ export default function Index() {
     }
   ];
 
+
+  const carouselImages = [
+    "public/mockups/Inicio-myw.png",
+    "public/mockups/Crear cuenta-myw.png",
+    "public/mockups/InicioSesion-myw.png",
+    "public/mockups/Descubrimiento1-myw.png",
+    "public/mockups/Zona de descubrimiento 2.png",
+    "public/mockups/Puntos de interés de la zona descubierta-myw.png",
+    "public/mockups/Descubrimiento de las zonas 3-myw.png",
+    "public/mockups/Registro de puntos de interés-myw.png",
+    "public/mockups/Menu mapas colaborativos -myw.png",
+    "public/mockups/Opciones mapas colaborativos-myw.png",
+    "public/mockups/Mapas creados-myw.png",
+    "public/mockups/Creación de mapas colaborativos-myw.png",
+    "public/mockups/invitación mapa colaborativo-myw.png",
+    "public/mockups/mapa colaborativo-myw.png"
+  ];
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -48,23 +66,7 @@ export default function Index() {
             Descubre una nueva forma de viajar con nuestra plataforma de geolocalización gamificada. 
             Registra tus aventuras, completa retos y conecta con otros viajeros.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="btn-primary"
-              onClick={() => navigate("/register")}
-            >
-              Comenzar gratis
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="btn-secondary"
-              onClick={() => navigate("/login")}
-            >
-              Iniciar sesión
-            </Button>
-          </div>
+
         </div>
       </section>
 
@@ -118,6 +120,17 @@ export default function Index() {
         </div>
       </section>
 
+      
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Explora nuestras funcionalidades
+          </h2>
+          <Carousel images={carouselImages} />
+        </div>
+      </section>
+
+      
       {/* Pilot Users Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">

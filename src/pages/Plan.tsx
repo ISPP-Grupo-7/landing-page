@@ -16,67 +16,77 @@ export default function Plan() {
 
   const features = {
     basic: {
-      "Registro de ubicaciones": {
+      "Visualización de mapa personal": {
         available: true,
-        limit: "Hasta 50 ubicaciones",
-        tooltip: "Guarda tus lugares favoritos con fotos y notas"
+        tooltip: "Visualiza el mapa que podrás explorar"
       },
-      "Compartir experiencias": {
+      "Exploración de zonas no descubiertas": {
         available: true,
-        limit: "Básico",
-        tooltip: "Comparte tus viajes en la comunidad"
+        tooltip: "Descubre el mapa poco a poco"
       },
-      "Visualización de mapas": {
+      "Registro de puntos de interés": {
         available: true,
-        limit: "Estándar",
+        limit: "Un solo punto por zona",
         tooltip: "Visualiza tus ubicaciones en el mapa"
       },
-      "Comunidad de viajeros": {
+      "Mapas colaborativos": {
         available: true,
-        limit: "Acceso básico",
+        limit: "Unión de mapas únicamente",
         tooltip: "Conecta con otros viajeros"
       },
-      "Anuncios": {
+      "Sistema social": {
         available: true,
-        limit: "Incluidos",
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Logros": {
+        available: true,
+        limit: "Solo completitud",
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Estadísiticas": {
+        available: false,
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Sin anuncios": {
+        available: false,
         tooltip: "Verás anuncios mientras usas la app"
       }
     },
     premium: {
-      "Registro de ubicaciones": {
+      "Visualización de mapa personal": {
         available: true,
-        limit: "Ilimitado",
-        tooltip: "Sin límites en el registro de ubicaciones"
+        tooltip: "Visualiza el mapa que podrás explorar"
       },
-      "Compartir experiencias": {
+      "Exploración de zonas no descubiertas": {
         available: true,
-        limit: "Avanzado",
-        tooltip: "Comparte con funciones premium y más detalles"
+        tooltip: "Descubre el mapa poco a poco"
       },
-      "Visualización de mapas": {
+      "Registro de puntos de interés": {
         available: true,
-        limit: "Premium",
-        tooltip: "Mapas personalizados y más capas de información"
+        limit: "Ilimitados",
+        tooltip: "Visualiza tus ubicaciones en el mapa"
       },
-      "Comunidad de viajeros": {
+      "Mapas colaborativos": {
         available: true,
-        limit: "Acceso VIP",
-        tooltip: "Acceso prioritario a eventos y contenido exclusivo"
+        limit: "Creación y unión",
+        tooltip: "Conecta con otros viajeros"
       },
-      "Estadísticas avanzadas": {
+      "Sistema social": {
         available: true,
-        limit: "Completo",
-        tooltip: "Análisis detallado de tus viajes"
+        tooltip: "Conecta con otros viajeros"
       },
-      "Soporte prioritario": {
+      "Logros": {
         available: true,
-        limit: "24/7",
-        tooltip: "Atención personalizada prioritaria"
+        limit: "Completitud y creación",
+        tooltip: "Conecta con otros viajeros"
       },
-      "Anuncios": {
-        available: false,
-        limit: "Sin anuncios",
-        tooltip: "Experiencia libre de anuncios"
+      "Estadísiticas": {
+        available: true,
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Sin anuncios": {
+        available: true,
+        tooltip: "Verás anuncios mientras usas la app"
       }
     }
   };

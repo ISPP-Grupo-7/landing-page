@@ -20,7 +20,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      info: "info@mapyourworld.com",
+      info: "mapyourworld.group7@gmail.com",
       description: "Respuesta en 24h"
     },
     {
@@ -34,12 +34,12 @@ export default function Contact() {
   const departments = [
     {
       name: "Soporte Técnico",
-      email: "soporte@mapyourworld.com",
+      email: "mapyourworld.group7@gmail.com",
       description: "Ayuda con la aplicación y funcionalidades."
     },
     {
       name: "Información General",
-      email: "info@mapyourworld.com",
+      email: "mapyourworld.group7@gmail.com",
       description: "Consultas sobre nuestros servicios."
     }
   ];

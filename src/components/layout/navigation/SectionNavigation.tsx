@@ -8,7 +8,6 @@ const sections = {
     links: [
       { label: "Centro de Ayuda", href: "/help" },
       { label: "Guía de Usuario", href: "/help/guide" },
-      { label: "Blog de Viajes", href: "/blog" },
       { label: "Comunidad", href: "/community" },
     ]
   },
@@ -25,8 +24,6 @@ const sections = {
     title: "Compañía",
     links: [
       { label: "Sobre Nosotros", href: "/about" },
-      { label: "Trabaja con Nosotros", href: "/careers" },
-      { label: "Programa de Afiliados", href: "/affiliates" },
       { label: "Contacto", href: "/contact" },
     ]
   }

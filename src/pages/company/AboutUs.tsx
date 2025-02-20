@@ -34,67 +34,67 @@ export default function AboutUs() {
   const team = [
     { 
       name: "Alfonso Alonso", 
-      roles: ["Backend (C)", "Testing", "DevOps", "Seguridad", "Marketing"]
+      roles: ["Backend","Coordinación (C)"]
     },
     { 
       name: "Alejandro Aragón", 
-      roles: ["Frontend (C)", "Testing", "DevOps", "Seguridad", "Legal", "Marketing"]
+      roles: ["Backend", "Testing", "Seguridad (C)", "Coordinación"]
     },
     { 
       name: "José María Baquero", 
-      roles: ["Backend", "Frontend", "Testing (C)", "DevOps", "Legal", "Marketing"]
+      roles: ["Frontend", "Marketing"]
     },
     { 
       name: "Pablo Caballero", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps (C)", "Seguridad", "Marketing"]
+      roles: ["Backend", "DevOps (C)", "Coordinación"]
     },
     { 
-      name: "Ricardo Carriera", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad (C)", "Legal"]
+      name: "Ricardo Carreño", 
+      roles: ["Frontend","Seguridad (C)", "Marketing", "Coordinación"]
     },
     { 
       name: "Franco Dell'Aguila", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad", "Legal (C)", "Marketing"]
+      roles: ["Frontend","DevOps", "Marketing"]
     },
     { 
       name: "Alberto Escobar", 
-      roles: ["Frontend", "Testing", "DevOps", "Seguridad", "Legal", "Marketing (C)"]
+      roles: ["Backend",""]
     },
     { 
       name: "Jaime Gómez", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad", "Legal", "Marketing"]
+      roles: ["Frontend", "Marketing"]
     },
     { 
       name: "Claudio González", 
-      roles: ["Backend (C)", "Testing", "Seguridad", "Marketing"]
+      roles: ["Backend", "Seguridad"]
     },
     { 
-      name: "Ángel Reina", 
-      roles: ["Frontend (C)", "Testing", "Seguridad", "Legal", "Marketing"]
+      name: "Ángel Neria", 
+      roles: ["Frontend (C)", "Marketing", "Coordinación"]
     },
     { 
       name: "Pablo Olivencia", 
-      roles: ["Backend", "Frontend", "Testing (C)", "DevOps", "Marketing"]
+      roles: ["Backend", "Frontend"]
     },
     { 
-      name: "Antonio Percar", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps (C)", "Seguridad", "Legal"]
+      name: "Antonio Porcar", 
+      roles: ["Backend",  "Testing (C)","Coordinación"]
     },
     { 
       name: "Alba Ramos", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad (C)", "Legal", "Marketing"]
+      roles: [ "Frontend", "Legal (C)", "Coordinación"]
     },
     { 
       name: "Pedro Pablo Santos", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad", "Legal (C)", "Marketing"]
+      roles: ["Backend (C)", "Testing","Coordinación"]
     },
     { 
       name: "Manuel Vélez", 
-      roles: ["Frontend", "Testing", "DevOps", "Seguridad", "Legal", "Marketing (C)"]
+      roles: ["Backend", "Testing", "DevOps"]
     },
     { 
-      name: "Gonzalo Garcia", 
-      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad", "Legal", "Marketing"]
+      name: "Gonzalo García", 
+      roles: ["Backend", "Frontend", "Testing", "DevOps", "Seguridad"]
     }
   ];
 
