@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Navigation, Trophy, Users, Mail, Users2, MessageSquare, UserCheck } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Carousel from "@/components/ui/carrusel-imagenes";
 
@@ -127,6 +127,21 @@ export default function Index() {
             Explora nuestras funcionalidades
           </h2>
           <Carousel images={carouselImages} />
+        </div>
+      </section>
+
+
+
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Aplicación en funcionamiento: 
+          </h2>
+          <a href="https://52.143.134.165/" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita el sitio
+        </a>
+        
+
         </div>
       </section>
 
