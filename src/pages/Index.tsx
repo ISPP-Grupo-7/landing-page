@@ -137,9 +137,14 @@ export default function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
             Aplicación en funcionamiento: 
           </h2>
-          <a href="https://52.143.134.165/" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
-            Visita el sitio
+          <a href="https://app1.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita la versión 1 de la aplicación
         </a>
+
+        <a href="https://app2.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita la versión 2 de la aplicación
+        </a>
+        
         
 
         </div>
