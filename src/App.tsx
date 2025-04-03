@@ -12,6 +12,7 @@ import Explore from "./pages/Explore";
 import NotFound from "./pages/NotFound";
 import Download from "@/pages/Download";
 import { Resources } from "@/pages/Resources";
+import AddPage from "@/pages/Add";
 
 // Legal Pages
 import TermsAndConditions from "@/pages/legal/TermsAndConditions";
@@ -30,6 +31,7 @@ import AboutUs from "@/pages/company/AboutUs";
 import Careers from "@/pages/company/Careers";
 import Affiliates from "@/pages/company/Affiliates";
 import Contact from "@/pages/company/Contact";
+import AddForm from "./components/add/AddForm";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +50,8 @@ const App = () => (
             <Route path="/explorar" element={<Explore />} />
             <Route path="/recursos" element={<Resources />} />
             <Route path="/download" element={<Download />} />
+            <Route path="/add" element={<AddPage />} />
+            <Route path="/add/new" element={<AddForm />} />
             
             {/* Legal Routes */}
             <Route path="/legal/terms" element={<TermsAndConditions />} />
