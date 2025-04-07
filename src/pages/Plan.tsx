@@ -16,25 +16,50 @@ export default function Plan() {
 
   const features = {
     basic: {
-      "Registro de ubicaciones": {
-        available: true,
-        limit: "Hasta 50 ubicaciones",
-        tooltip: "Guarda tus lugares favoritos con fotos y notas"
-      },
-      "Compartir experiencias": {
-        available: true,
-        limit: "Básico",
-        tooltip: "Comparte tus viajes en la comunidad"
-      },
       "Visualización de mapas": {
         available: true,
-        limit: "Estándar",
+        limit: "",
         tooltip: "Visualiza tus ubicaciones en el mapa"
       },
-      "Comunidad de viajeros": {
+      "Desbloquea distritos": {
         available: true,
-        limit: "Acceso básico",
-        tooltip: "Conecta con otros viajeros"
+        limit: "",
+        tooltip: "Explora el mundo ",
+      },
+      "Registro de ubicaciones": {
+        available: true,
+        limit: "Uno por distrito",
+        tooltip: "Guarda tus lugares favoritos con fotos y notas"
+      },
+      "Desbloquea logros": {
+        available: true,
+        limit: "",
+        tooltip: "Supera retos y desafíos"
+      },
+      "Crea tus propios logros": {
+        available: false,
+        limit: "",
+        tooltip: "Crea logros personalizados para marcar etapas"
+      },
+      "Consulta tus estadísticas de exploración": {
+        available: false,
+        limit: "",
+        tooltip: "Comprueba cuánto has recorrido desde que te registraste"
+      },
+      "Hazte amigo de otros usuarios": {
+        available: true,
+        limit: "",
+        tooltip: "Registra una amistad y compartid aventuras"
+      },
+      "Únete a mapas colaborativos": {
+        available: true,
+        limit: "Uno por usuario",
+        tooltip: "Acepta una invitación de otro jugador y desbloquead el mapa juntos"
+      },
+      "Crea mapas colaborativos e invita a tus amigos": {
+        available: false,
+        limit: "",
+        tooltip: "Crea mapas e invita hasta 5 amigos"
       },
       "Anuncios": {
         available: true,
@@ -43,40 +68,55 @@ export default function Plan() {
       }
     },
     premium: {
+      "Visualización de mapas": {
+        available: true,
+        limit: "",
+        tooltip: "Visualiza tus ubicaciones en el mapa"
+      },
+      "Desbloquea distritos": {
+        available: true,
+        limit: "",
+        tooltip: "Explora el mundo ",
+      },
       "Registro de ubicaciones": {
         available: true,
         limit: "Ilimitado",
-        tooltip: "Sin límites en el registro de ubicaciones"
+        tooltip: "Guarda tus lugares favoritos con fotos y notas"
       },
-      "Compartir experiencias": {
+      "Desbloquea logros": {
         available: true,
-        limit: "Avanzado",
-        tooltip: "Comparte con funciones premium y más detalles"
+        limit: "",
+        tooltip: "Supera retos y desafíos"
       },
-      "Visualización de mapas": {
+      "Crea tus propios logros": {
         available: true,
-        limit: "Premium",
-        tooltip: "Mapas personalizados y más capas de información"
+        limit: "Ilimitado",
+        tooltip: "Crea logros personalizados para marcar etapas"
       },
-      "Comunidad de viajeros": {
+      "Consulta tus estadísticas de exploración": {
         available: true,
-        limit: "Acceso VIP",
-        tooltip: "Acceso prioritario a eventos y contenido exclusivo"
+        limit: "",
+        tooltip: "Comprueba cuánto has recorrido desde que te registraste"
       },
-      "Estadísticas avanzadas": {
+      "Hazte amigo de otros usuarios": {
         available: true,
-        limit: "Completo",
-        tooltip: "Análisis detallado de tus viajes"
+        limit: "",
+        tooltip: "Registra una amistad y compartid aventuras"
       },
-      "Soporte prioritario": {
+      "Únete a mapas colaborativos": {
         available: true,
-        limit: "24/7",
-        tooltip: "Atención personalizada prioritaria"
+        limit: "Ilimitado",
+        tooltip: "Acepta una invitación de otro jugador y desbloquead el mapa juntos"
+      },
+      "Crea mapas colaborativos e invita a tus amigos": {
+        available: true,
+        limit: "Ilimitado",
+        tooltip: "Crea mapas e invita hasta 5 amigos"
       },
       "Anuncios": {
         available: false,
-        limit: "Sin anuncios",
-        tooltip: "Experiencia libre de anuncios"
+        limit: "No incluidos",
+        tooltip: "Disfruta de una experiencia sin anuncios"
       }
     }
   };

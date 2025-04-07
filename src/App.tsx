@@ -18,6 +18,7 @@ import TermsAndConditions from "@/pages/legal/TermsAndConditions";
 import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
 import CookiesPolicy from "@/pages/legal/CookiesPolicy";
 import LegalNotice from "@/pages/legal/LegalNotice";
+import ServiceAgreement from "@/pages/legal/ServiceAgreement";
 
 // Resource Pages
 import HelpCenter from "@/pages/resources/HelpCenter";
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/legal/privacy" element={<PrivacyPolicy />} />
             <Route path="/legal/cookies" element={<CookiesPolicy />} />
             <Route path="/legal/legal-notice" element={<LegalNotice />} />
+            <Route path="/legal/service-level-agreement" element={<ServiceAgreement />} />
             
             {/* Resource Routes */}
             <Route path="/help" element={<HelpCenter />} />
