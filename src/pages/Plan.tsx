@@ -61,9 +61,21 @@ export default function Plan() {
         limit: "",
         tooltip: "Crea mapas e invita hasta 5 amigos"
       },
-      "Anuncios": {
+      "Sistema social": {
         available: true,
-        limit: "Incluidos",
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Logros": {
+        available: true,
+        limit: "Solo completitud",
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Estadísiticas": {
+        available: false,
+        tooltip: "Conecta con otros viajeros"
+      },
+      "Sin anuncios": {
+        available: false,
         tooltip: "Verás anuncios mientras usas la app"
       }
     },

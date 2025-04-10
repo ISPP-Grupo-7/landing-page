@@ -219,6 +219,7 @@ export default function PrivacyPolicy() {
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
               >
                 mapyourworld.group7@gmail.com
+
               </a>
             </div>
           </div>

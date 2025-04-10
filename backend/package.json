@@ -1,0 +1,20 @@
+{
+  "name": "MapYourWorld-landing-back",
+  "version": "1.0.0",
+  "description": "Minimal backend necessary for sending emails",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "MapYourWorld",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "nodemailer": "^6.10.0"
+  }
+}
