@@ -8,13 +8,14 @@ export function CompanyInfo() {
       <p className="text-gray-600 text-sm">
         Explora, comparte y descubre nuevas aventuras con nuestra comunidad de viajeros.
       </p>
-      <div className="inline-flex items-center justify-center gap-2 text-gray-600 bg-gray-50 px-4 py-2 rounded-full">
+      <div className="inline-flex items-center justify-center gap-2 text-gray-600 bg-gray-50 px-0 py-2 rounded-full">
         <Mail className="w-4 h-4" />
         <a 
-          href="mailto:info@mapyourworld.com" 
+          href="mailto:mapyourworld.group7@gmail.com" 
           className="hover:text-primary transition-colors"
         >
-          info@mapyourworld.com
+          mapyourworld.group7@gmail.com
+
         </a>
       </div>
       <SocialLinks />

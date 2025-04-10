@@ -25,14 +25,6 @@ export function PlanFeature({ feature, details }: PlanFeatureProps) {
       )}
       <span className="flex-1">{feature}</span>
       <span className="text-sm text-gray-500">{details.limit}</span>
-      <Tooltip>
-        <TooltipTrigger>
-          <HelpCircle className="w-4 h-4 text-gray-400 hover:text-[#40CEB5] transition-colors" />
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>{details.tooltip}</p>
-        </TooltipContent>
-      </Tooltip>
     </li>
   );
 } 

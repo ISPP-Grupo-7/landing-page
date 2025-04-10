@@ -44,14 +44,6 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
             <tr key={feature} className="border-t">
               <td className="py-4 flex items-center gap-2">
                 {feature}
-                <Tooltip>
-                  <TooltipTrigger>
-                    <HelpCircle className="w-4 h-4 text-gray-400 hover:text-[#40CEB5] transition-colors" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{plans[0].features[feature].tooltip}</p>
-                  </TooltipContent>
-                </Tooltip>
               </td>
               {plans.map(plan => (
                 <td key={`${plan.name}-${feature}`} className="text-center py-4">

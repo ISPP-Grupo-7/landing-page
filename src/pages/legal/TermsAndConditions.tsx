@@ -163,11 +163,11 @@ export default function TermsAndConditions() {
             </p>
             <div className="flex flex-col md:flex-row gap-4">
               <a 
-                href="mailto:support@mapyourworld.com"
+                href="mailto:mapyourworld.group7@gmail.com"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                support@mapyourworld.com
+                mapyourworld.group7@gmail.com
               </a>
               <span className="text-gray-300 hidden md:inline">|</span>
               <a 
