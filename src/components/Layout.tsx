@@ -22,7 +22,9 @@ export default function Layout() {
   }, []);
 
   const navLinks = [
-    { path: '/plan', label: 'Plan' }
+    { path: '/explorar', label: 'Explorar' },
+    { path: '/plan', label: 'Plan' },
+    { path: '/add', label: 'Publicítate' }
   ];
 
   const isActive = (path: string) => location.pathname === path;
