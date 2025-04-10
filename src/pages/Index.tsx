@@ -144,9 +144,23 @@ export default function Index() {
         <a href="https://app2.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
             Visita la versión 2 de la aplicación
         </a>
-        
-        
 
+        <a href="https://app3.mapyourworld.es/" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita la versión 3 de la aplicación
+        </a>      
+
+        </div>
+      </section>
+
+
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Aplicación en formato APK (para Android y en versión beta): 
+          </h2>
+          <a href="https://drive.google.com/file/d/1sAxYFsEpnN3nqv5Tu2-1o4l0zy6dtj6P/view?usp=drivesdk" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Enlace a Google Drive para descarga del ZIP con APK 
+        </a>
         </div>
       </section>
 
