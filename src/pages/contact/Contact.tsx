@@ -104,7 +104,7 @@ export function Contact() {
                   href="mailto:soporte@mapjourney.es"
                   className="text-sm text-primary hover:underline"
                 >
-                  soporte@mapjourney.es
+                  mapyourworld.group7@gmail.com
                 </a>
               </div>
               <div>
@@ -113,10 +113,10 @@ export function Contact() {
                   Para consultas generales y asistencia
                 </p>
                 <a
-                  href="mailto:info@mapjourney.es"
+                  href="mailto:mapyourworld.group7@gmail.com"
                   className="text-sm text-primary hover:underline"
                 >
-                  info@mapjourney.es
+                  mapyourworld.group7@gmail.com
                 </a>
               </div>
             </div>

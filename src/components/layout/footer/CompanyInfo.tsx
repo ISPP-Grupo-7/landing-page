@@ -15,7 +15,6 @@ export function CompanyInfo() {
           className="hover:text-primary transition-colors"
         >
           mapyourworld.group7@gmail.com
-
         </a>
       </div>
       <SocialLinks />

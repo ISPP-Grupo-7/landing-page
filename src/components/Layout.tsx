@@ -22,7 +22,8 @@ export default function Layout() {
   }, []);
 
   const navLinks = [
-    { path: '/plan', label: 'Plan' }
+    { path: '/plan', label: 'Plan' },
+    { path: '/add', label: 'Publicítate' }
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -63,18 +64,7 @@ export default function Layout() {
                   {link.label}
                 </Link>
               ))}
-              <Button 
-                variant="ghost"
-                className={cn(
-                  "nav-link px-3 py-2 rounded-md transition-colors",
-                  isActive('/download')
-                    ? "text-primary font-medium bg-primary/10"
-                    : "text-gray-600 hover:text-primary hover:bg-primary/5"
-                )}
-                onClick={() => navigate("/download")}
-              >
-                Descargar
-              </Button>
+
 
             </nav>
 

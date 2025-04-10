@@ -18,6 +18,7 @@ const sections = {
       { label: "Política de Privacidad", href: "/legal/privacy" },
       { label: "Política de Cookies", href: "/legal/cookies" },
       { label: "Aviso Legal", href: "/legal/legal-notice" },
+      { label: "Acuerdo del Nivel de Servicio", href: "/legal/service-level-agreement" },
     ]
   },
   company: {

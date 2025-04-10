@@ -1,11 +1,11 @@
 import { LegalPage } from "@/components/legal/LegalPage";
-import { Shield, User, MapPin, Image, Lock, Clock, Users, Bell, FileText, Mail } from "lucide-react";
+import { Shield, User, MapPin, Image, Lock, Clock, Users, Bell, FileText, Mail, Search } from "lucide-react";
 
 export default function PrivacyPolicy() {
   return (
     <LegalPage 
       title="Tu Privacidad es Nuestra Prioridad" 
-      lastUpdated="19 de febrero de 2025"
+      lastUpdated="5 de abril de 2025"
     >
       <div className="space-y-12">
         <section className="space-y-4">
@@ -24,16 +24,16 @@ export default function PrivacyPolicy() {
         <section className="space-y-6">
           <div className="flex items-center gap-3 text-primary">
             <User className="w-6 h-6" />
-            <h2 className="text-2xl font-bold">Datos que Recopilamos</h2>
+            <h2 className="text-2xl font-bold">Datos con los que tratamos</h2>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold mb-4 text-gray-800">Información Personal</h3>
+              <h3 className="font-semibold mb-4 text-gray-800">Información del perfil</h3>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Nombre completo
+                  Nombre y apellidos
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
@@ -41,43 +41,97 @@ export default function PrivacyPolicy() {
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Fecha de nacimiento
+                  Nombre de usuario
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Contraseña asociada
                 </li>
               </ul>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold mb-4 text-gray-800">Datos de Ubicación</h3>
+              <h3 className="font-semibold mb-4 text-gray-800">Información de ubicación</h3>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  GPS en tiempo real
+                  Distritos descubiertos
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Metadatos de fotos
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Historial de rutas
+                  <div className="w-1.5 h-1.5 bg-red-100 rounded-full"></div>
+                  La ubicación a tiempo real no se recogerá
                 </li>
               </ul>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold mb-4 text-gray-800">Contenido Creado</h3>
+              <h3 className="font-semibold mb-4 text-gray-800">Información de puntos de interés</h3>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Fotos y videos
+                  Fotos
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Reseñas y comentarios
+                  Nombre y descripción
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Logros obtenidos
+                  Coordenadas
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Categoría
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-semibold mb-4 text-gray-800">Información de logros</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Logros desbloqueados
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Logros creados
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Información del logro proporcionada por el usuario
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-semibold mb-4 text-gray-800">Información de amistades</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Amigos
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Mapas colaborativos a los que pertenece
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Mapas colaborativos creados
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-semibold mb-4 text-gray-800">Información de pagos</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                  Historial de subscripciones
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-red-100 rounded-full"></div>
+                  La información de pago no se guardará
                 </li>
               </ul>
             </div>
@@ -131,6 +185,24 @@ export default function PrivacyPolicy() {
           </div>
         </section>
 
+        <section className="">
+          <div className="flex items-center gap-3 text-primary">
+            <Search className="w-6 h-6" />
+            <h2 className="text-2xl font-bold">Uso de la información</h2>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow space-y-3">
+              <p className="text-gray-600 text-justify">
+              La información geográfica recogida se utilizará única y exclusivamente para el módulo estadístico y de logros 
+              incluidos en el propio servicio.
+              </p>
+              <p className="text-gray-600 text-justify">
+              Toda información recogida o generada por MapYourWorld será de uso exclusivo por MapYourWorld y no serán compartidos 
+              ni accesibles por ninguna organización ni persona ajenas al equipo de MapYourWorld.
+              </p>
+            </div>
+        </section>
+
         <section className="space-y-6">
           <div className="flex items-center gap-3 text-primary">
             <Mail className="w-6 h-6" />
@@ -141,20 +213,13 @@ export default function PrivacyPolicy() {
             <p className="text-gray-600 mb-4">
               ¿Tienes preguntas sobre cómo manejamos tus datos? Estamos aquí para ayudarte:
             </p>
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="w-100 text-center">
               <a 
                 href="mailto:mapyourworld.group7@gmail.com"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
               >
-                <Mail className="w-5 h-5" />
                 mapyourworld.group7@gmail.com
-              </a>
-              <span className="text-gray-300 hidden md:inline">|</span>
-              <a 
-                href="/help/privacy"
-                className="text-primary hover:text-primary/80 transition-colors"
-              >
-                Centro de Ayuda de Privacidad
+
               </a>
             </div>
           </div>
