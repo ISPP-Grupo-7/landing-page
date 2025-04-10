@@ -239,7 +239,7 @@ export default function Affiliates() {
             </Dialog>
             <Button variant="outline" size="lg">
               <Mail className="w-4 h-4 mr-2" />
-              <a href="mailto:affiliates@mapyourworld.com">Contactar</a>
+              <a href="mailto:mapyourworld.group7@gmail.com">Contactar</a>
             </Button>
           </div>
         </section>
