@@ -77,24 +77,7 @@ export default function Layout() {
               >
                 Descargar
               </Button>
-              <Button 
-                variant="ghost" 
-                className={cn(
-                  "nav-link px-3 py-2 rounded-md transition-colors",
-                  isActive('/login')
-                    ? "text-primary font-medium bg-primary/10"
-                    : "text-gray-600 hover:text-primary hover:bg-primary/5"
-                )}
-                onClick={() => navigate("/login")}
-              >
-                Iniciar sesión
-              </Button>
-              <Button 
-                className="btn-primary"
-                onClick={() => navigate("/register")}
-              >
-                Registrarse
-              </Button>
+
             </nav>
 
             {/* Mobile Menu Button */}

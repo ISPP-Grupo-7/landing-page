@@ -87,11 +87,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-600 hover:text-primary transition-colors text-sm">
-                  Blog de Viajes
-                </Link>
-              </li>
-              <li>
                 <Link to="/community" className="text-gray-600 hover:text-primary transition-colors text-sm">
                   Comunidad
                 </Link>
@@ -106,16 +101,6 @@ export function Footer() {
               <li>
                 <Link to="/about" className="text-gray-600 hover:text-primary transition-colors text-sm">
                   Sobre Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link to="/careers" className="text-gray-600 hover:text-primary transition-colors text-sm">
-                  Trabaja con Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link to="/affiliates" className="text-gray-600 hover:text-primary transition-colors text-sm">
-                  Programa de Afiliados
                 </Link>
               </li>
               <li>

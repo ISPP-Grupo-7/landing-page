@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Navigation, Trophy, Users, Mail, Users2, MessageSquare, UserCheck } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Carousel from "@/components/ui/carrusel-imagenes";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,6 +30,23 @@ export default function Index() {
     }
   ];
 
+
+  const carouselImages = [
+    "mockups/inicio-myw.png",
+    "mockups/crearcuenta-myw.png",
+    "mockups/iniciosesion-myw.png",
+    "mockups/descubrimiento1-myw.png",
+    "mockups/zonadedescubrimiento2.png",
+    "mockups/puntosdeinterésdelazonadescubierta-myw.png",
+    "mockups/descubrimientodelaszonas3-myw.png",
+    "mockups/registrodepuntosdeinterés-myw.png",
+    "mockups/menumapascolaborativos-myw.png",
+    "mockups/opcionesmapascolaborativos-myw.png",
+    "mockups/mapascreados-myw.png",
+    "mockups/creacióndemapascolaborativos-myw.png",
+    "mockups/invitaciónmapacolaborativo-myw.png",
+    "mockups/mapacolaborativo-myw.png"
+  ];
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -48,23 +66,7 @@ export default function Index() {
             Descubre una nueva forma de viajar con nuestra plataforma de geolocalización gamificada. 
             Registra tus aventuras, completa retos y conecta con otros viajeros.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="btn-primary"
-              onClick={() => navigate("/register")}
-            >
-              Comenzar gratis
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="btn-secondary"
-              onClick={() => navigate("/login")}
-            >
-              Iniciar sesión
-            </Button>
-          </div>
+
         </div>
       </section>
 
@@ -118,6 +120,51 @@ export default function Index() {
         </div>
       </section>
 
+      
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Explora nuestras funcionalidades
+          </h2>
+          <Carousel images={carouselImages} />
+        </div>
+      </section>
+
+
+
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Aplicación en funcionamiento: 
+          </h2>
+          <a href="https://app1.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita la versión 1 de la aplicación
+        </a>
+
+        <a href="https://app2.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita la versión 2 de la aplicación
+        </a>
+
+        <a href="https://app3.mapyourworld.es/" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Visita la versión 3 de la aplicación
+        </a>      
+
+        </div>
+      </section>
+
+
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Aplicación en formato APK (para Android y en versión beta): 
+          </h2>
+          <a href="https://drive.google.com/file/d/1sAxYFsEpnN3nqv5Tu2-1o4l0zy6dtj6P/view?usp=drivesdk" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
+            Enlace a Google Drive para descarga del ZIP con APK 
+        </a>
+        </div>
+      </section>
+
+      
       {/* Pilot Users Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
