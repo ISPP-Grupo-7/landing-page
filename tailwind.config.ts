@@ -18,16 +18,20 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Karst", "system-ui", "sans-serif"],
       },
       colors: {
         primary: {
-          DEFAULT: "#4FD1C5",
+          DEFAULT: "#0003ff",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#F6AD55",
-          foreground: "#1A202C",
+          DEFAULT: "#007df3",
+          foreground: "#FFFFFF",
+        },
+        tertiary: {
+          DEFAULT: "#00b0dc",
+          foreground: "#FFFFFF",
         },
         background: "#FFFFFF",
         foreground: "#1A202C",

@@ -41,7 +41,7 @@ export default function Layout() {
               className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
             >
               <img 
-                src="/favicon.svg" 
+                src="/logo.png" 
                 alt="MapYourWorld Logo" 
                 className="w-6 h-6" 
               />

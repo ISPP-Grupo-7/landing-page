@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Navigation, Trophy, Users, Mail, Users2, MessageSquare, UserCheck } from "lucide-react";
+import { MapPin, Navigation, Trophy, Users, Mail, Users2, MessageSquare, UserCheck, DownloadIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Carousel from "@/components/ui/carrusel-imagenes";
+import VideoHero from "@/components/ui/video-hero";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,22 +31,7 @@ export default function Index() {
   ];
 
 
-  const carouselImages = [
-    "mockups/inicio-myw.png",
-    "mockups/crearcuenta-myw.png",
-    "mockups/iniciosesion-myw.png",
-    "mockups/descubrimiento1-myw.png",
-    "mockups/zonadedescubrimiento2.png",
-    "mockups/puntosdeinterésdelazonadescubierta-myw.png",
-    "mockups/descubrimientodelaszonas3-myw.png",
-    "mockups/registrodepuntosdeinterés-myw.png",
-    "mockups/menumapascolaborativos-myw.png",
-    "mockups/opcionesmapascolaborativos-myw.png",
-    "mockups/mapascreados-myw.png",
-    "mockups/creacióndemapascolaborativos-myw.png",
-    "mockups/invitaciónmapacolaborativo-myw.png",
-    "mockups/mapacolaborativo-myw.png"
-  ];
+  const videoUrl = "/videos/presentacion.mp4";
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -126,41 +111,173 @@ export default function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
             Explora nuestras funcionalidades
           </h2>
-          <Carousel images={carouselImages} />
+          <VideoHero videoUrl={videoUrl} />
+          <div className="text-center mt-8">
+            <Button
+              size="lg"
+              className="btn-primary"
+              onClick={() => {
+                navigate("/plan");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              Ver todas las funcionalidades
+            </Button>
+          </div>
         </div>
       </section>
 
+      {/* Detailed Features Section
+      <section id="detailed-features" className="py-24 bg-gradient-to-b from-white to-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Funcionalidades Detalladas
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="space-y-8">
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4 text-primary">Geolocalización Inteligente</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li>• Registro automático de ubicaciones mediante GPS</li>
+                  <li>• Extracción de metadatos de fotos para ubicación</li>
+                  <li>• Historial detallado de lugares visitados</li>
+                  <li>• Mapas personalizados de tus viajes</li>
+                </ul>
+              </div>
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4 text-primary">Sistema de Gamificación</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li>• Retos diarios y semanales</li>
+                  <li>• Insignias por logros especiales</li>
+                  <li>• Sistema de niveles y experiencia</li>
+                  <li>• Recompensas exclusivas</li>
+                </ul>
+              </div>
+            </div>
+            <div className="space-y-8">
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4 text-primary">Comunidad Viajera</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li>• Perfiles personalizados</li>
+                  <li>• Compartir experiencias y fotos</li>
+                  <li>• Recomendaciones de otros viajeros</li>
+                  <li>• Eventos y encuentros</li>
+                </ul>
+              </div>
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4 text-primary">Características Premium</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li>• Mapas offline</li>
+                  <li>• Estadísticas avanzadas</li>
+                  <li>• Contenido exclusivo</li>
+                  <li>• Soporte prioritario</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-16">
+            <p className="text-xl text-gray-600 mb-8">
+              Descubre todos nuestros planes y elige el que mejor se adapte a ti
+            </p>
+            <Button
+              size="lg"
+              className="btn-primary"
+              onClick={() => navigate("/plan")}
+            >
+              Ver Planes
+            </Button>
+          </div>
+        </div>
+      </section> */}
+
+      {/* Marketing Videos Section
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Descubre MapYourWorld
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="aspect-video">
+                <VideoHero videoUrl="/videos/features-overview.mp4" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Vista General de Funcionalidades</h3>
+                <p className="text-gray-600">Un recorrido completo por todas las características que hacen única nuestra aplicación.</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="aspect-video">
+                <VideoHero videoUrl="/videos/user-testimonials.mp4" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Testimonios de Usuarios</h3>
+                <p className="text-gray-600">Descubre cómo MapYourWorld está transformando la forma de viajar de nuestros usuarios.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Aplicación en funcionamiento:
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                url: "https://app1.mapyourworld.es",
+                title: "Versión 1",
+                description: "Explora la primera versión de nuestra aplicación.",
+              },
+              {
+                url: "https://app2.mapyourworld.es",
+                title: "Versión 2",
+                description: "Descubre las mejoras en la segunda versión.",
+              },
+              {
+                url: "https://app3.mapyourworld.es",
+                title: "Versión 3",
+                description: "Prueba las últimas funcionalidades en la tercera versión.",
+              },
+            ].map((app, index) => (
+              <a
+                key={index}
+                href={app.url}
+                target="_blank"
+                className="block bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                  <Navigation className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">{app.title}</h3>
+                <p className="text-gray-600">{app.description}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Aplicación en funcionamiento: 
+            Aplicación en formato APK (para Android y en versión beta):
           </h2>
-          <a href="https://app1.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
-            Visita la versión 1 de la aplicación
-        </a>
-
-        <a href="https://app2.mapyourworld.es" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
-            Visita la versión 2 de la aplicación
-        </a>
-
-        <a href="https://app3.mapyourworld.es/" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
-            Visita la versión 3 de la aplicación
-        </a>      
-
-        </div>
-      </section>
-
-
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Aplicación en formato APK (para Android y en versión beta): 
-          </h2>
-          <a href="https://drive.google.com/file/d/1sAxYFsEpnN3nqv5Tu2-1o4l0zy6dtj6P/view?usp=drivesdk" target="_blank" className="text-blue-500 hover:underline ml-2 flex justify-center">
-            Enlace a Google Drive para descarga del ZIP con APK 
-        </a>
+          <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
+            <a
+              href="https://drive.google.com/file/d/1sAxYFsEpnN3nqv5Tu2-1o4l0zy6dtj6P/view?usp=drivesdk"
+              target="_blank"
+              className="block bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                <DownloadIcon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Descargar APK</h3>
+              <p className="text-gray-600">Enlace a Google Drive para descarga del ZIP con APK.</p>
+            </a>
+          </div>
         </div>
       </section>
 
