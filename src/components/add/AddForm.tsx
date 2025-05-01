@@ -159,7 +159,7 @@ const AddForm = () => {
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
             }}>
               <h1 style={{ fontSize: 35, fontWeight: 'bold', }}>
-                <span style={{color: '#2bbbad'}}>Publicítate</span> con nosotros
+                <span style={{color: '#0003ff'}}>Publicítate</span> con nosotros
               </h1>
               <div style={{ margin: 20, fontSize: 16, color: '#64748b', }}>
                 Si quieres aparecer en nuestro mapa, ponte en contacto con nuestro equipo rellenando el siguiente formulario.
@@ -182,8 +182,8 @@ const AddForm = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                         height: '44px',
-                        borderColor: errors.email ? '#e53e3e' : undefined,
-                        border: '2px solid #e2e8f0',
+                        borderColor: errors.email ? '#e53e3e' : '#0003ff',
+                        border: '1px solid #0003ff',
                         borderRadius: 8,
                         fontSize: 16,
                         transition: 'border-color 0.2s',
@@ -214,8 +214,8 @@ const AddForm = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                         height: '44px',
-                        borderColor: errors.name ? '#e53e3e' : undefined,
-                        border: '2px solid #e2e8f0',
+                        borderColor: errors.name ? '#e53e3e' : '#0003ff',
+                        border: '1px solid #0003ff',
                         borderRadius: 8,
                         fontSize: 16,
                         transition: 'border-color 0.2s',
@@ -246,8 +246,8 @@ const AddForm = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                         height: '44px',
-                        borderColor: errors.description ? '#e53e3e' : undefined,
-                        border: '2px solid #e2e8f0',
+                        borderColor: errors.description ? '#e53e3e' : '#0003ff',
+                        border: '1px solid #0003ff',
                         borderRadius: 8,
                         fontSize: 16,
                         transition: 'border-color 0.2s',
@@ -278,8 +278,8 @@ const AddForm = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                         height: '44px',
-                        borderColor: errors.address ? '#e53e3e' : undefined,
-                        border: '2px solid #e2e8f0',
+                        borderColor: errors.address ? '#e53e3e' : '#0003ff',
+                        border: '1px solid #0003ff',
                         borderRadius: 8,
                         fontSize: 16,
                         transition: 'border-color 0.2s',
@@ -309,8 +309,8 @@ const AddForm = () => {
                           paddingLeft: '10px',
                           paddingRight: '10px',
                           height: '44px',
-                          borderColor: errors.city ? '#e53e3e' : undefined,
-                          border: '2px solid #e2e8f0',
+                          borderColor: errors.city ? '#e53e3e' : '#0003ff',
+                          border: '1px solid #0003ff',
                           borderRadius: 8,
                           fontSize: 16,
                           transition: 'border-color 0.2s',
@@ -340,8 +340,8 @@ const AddForm = () => {
                           paddingLeft: '10px',
                           paddingRight: '10px',
                           height: '44px',
-                          borderColor: errors.postalcode ? '#e53e3e' : undefined,
-                          border: '2px solid #e2e8f0',
+                          borderColor: errors.postalcode ? '#e53e3e' : '#0003ff',
+                          border: '1px solid #0003ff',
                           borderRadius: 8,
                           fontSize: 16,
                           transition: 'border-color 0.2s',
@@ -372,8 +372,8 @@ const AddForm = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                         height: '44px',
-                        borderColor: errors.country ? '#e53e3e' : undefined,
-                        border: '2px solid #e2e8f0',
+                        borderColor: errors.country ? '#e53e3e' : '#0003ff',
+                        border: '1px solid #0003ff',
                         borderRadius: 8,
                         fontSize: 16,
                         transition: 'border-color 0.2s',
@@ -404,8 +404,8 @@ const AddForm = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                         height: '44px',
-                        borderColor: errors.description ? '#e53e3e' : undefined,
-                        border: '2px solid #e2e8f0',
+                        borderColor: errors.comments ? '#e53e3e' : '#0003ff',
+                        border: '1px solid #0003ff',
                         borderRadius: 8,
                         fontSize: 16,
                         transition: 'border-color 0.2s',
@@ -426,7 +426,7 @@ const AddForm = () => {
                     onClick={handleSubmit}
                     style={{
                       width: '100%',
-                      backgroundColor: '#2bbbad',
+                      backgroundColor: '#0003ff',
                       color: 'white',
                       border: 'none',
                       borderRadius: '8px',
@@ -454,4 +454,4 @@ const AddForm = () => {
   );
 };
 
-export default AddForm; 
+export default AddForm;

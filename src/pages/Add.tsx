@@ -109,7 +109,7 @@ export default function AddPage() {
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b')] bg-cover bg-center parallax-bg opacity-20" />
       <div className="relative z-10 container mx-auto px-2">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4"><span className="text-primary">Publicítate</span> con nosotros</h1>
+          <h1 className="text-4xl font-bold mb-4"><span className="text-[#0003ff]">Publicítate</span> con nosotros</h1>
         </div>
 
         <div className="transition-all duration-300">
@@ -128,4 +128,4 @@ export default function AddPage() {
       </div>
     </div>
   );
-} 
+}

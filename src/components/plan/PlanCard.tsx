@@ -34,14 +34,14 @@ export function PlanCard({
       className={`
         glass-panel p-8 rounded-xl transition-all duration-300 relative
         hover:transform-gpu hover:scale-[1.02] hover:shadow-lg
-        ${highlighted ? 'border-2 border-[#40CEB5]' : ''}
+        ${highlighted ? 'border-2 border-[#0003ff]' : ''}
       `}
     >
       {badge && (
         <div className="absolute -top-3 -right-3">
           <span className={`
             px-3 py-1 rounded-full text-sm font-medium
-            ${badge === 'Popular' ? 'bg-[#40CEB5] text-white' : 'bg-secondary text-white'}
+            ${badge === 'Popular' ? 'bg-[#0003ff] text-white' : 'bg-[#007df3] text-white'}
           `}>
             {badge}
           </span>
@@ -51,9 +51,9 @@ export function PlanCard({
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
           {name}
-          {highlighted && <Sparkles className="w-5 h-5 text-[#40CEB5]" />}
+          {highlighted && <Sparkles className="w-5 h-5 text-[#0003ff]" />}
         </h3>
-        <div className="text-4xl font-bold text-[#40CEB5] mb-2">
+        <div className="text-4xl font-bold text-[#0003ff] mb-2">
           {price}
           {period && <span className="text-lg text-gray-600">{period}</span>}
         </div>
@@ -74,8 +74,8 @@ export function PlanCard({
         className={`
           w-full h-12 transition-all duration-300
           ${highlighted
-            ? 'bg-[#40CEB5] hover:bg-[#40CEB5]/90 text-white'
-            : 'bg-white border-2 border-[#40CEB5] text-[#40CEB5] hover:bg-[#40CEB5]/10'
+            ? 'bg-[#0003ff] hover:bg-[#0003ff]/90 text-white'
+            : 'bg-white border-2 border-[#0003ff] text-[#0003ff] hover:bg-[#0003ff]/10'
           }
           font-medium rounded-lg hover:scale-105
         `}
@@ -86,4 +86,4 @@ export function PlanCard({
       </Button>
     </div>
   );
-} 
+}

@@ -31,7 +31,7 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
             {plans.map(plan => (
               <th key={plan.name} className="text-center py-4">
                 <div className="font-bold text-xl mb-2">{plan.name}</div>
-                <div className="text-[#40CEB5] font-bold">
+                <div className="text-[#0003ff] font-bold">
                   {plan.price}
                   {plan.period}
                 </div>
@@ -50,7 +50,7 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
                   {plan.features[feature] ? (
                     <div className="flex flex-col items-center gap-1">
                       {plan.features[feature].available ? (
-                        <Check className="w-5 h-5 text-[#40CEB5]" />
+                        <Check className="w-5 h-5 text-[#0003ff]" />
                       ) : (
                         <X className="w-5 h-5 text-red-500" />
                       )}
@@ -69,4 +69,4 @@ export function ComparisonTable({ plans }: ComparisonTableProps) {
       </table>
     </div>
   );
-} 
+}

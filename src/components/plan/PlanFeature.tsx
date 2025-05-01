@@ -19,7 +19,7 @@ export function PlanFeature({ feature, details }: PlanFeatureProps) {
   return (
     <li className="flex items-center gap-3 group">
       {details.available ? (
-        <Check className="w-5 h-5 text-[#40CEB5]" />
+        <Check className="w-5 h-5 text-[#0003ff]" />
       ) : (
         <X className="w-5 h-5 text-red-500" />
       )}
@@ -27,4 +27,4 @@ export function PlanFeature({ feature, details }: PlanFeatureProps) {
       <span className="text-sm text-gray-500">{details.limit}</span>
     </li>
   );
-} 
+}
