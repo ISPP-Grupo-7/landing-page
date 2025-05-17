@@ -23,7 +23,9 @@ export default function Layout() {
 
   const navLinks = [
     { path: '/plan', label: 'Plan' },
-    { path: '/add', label: 'Publicítate' }
+    { path: '/add', label: 'Publicítate' },
+    { path: '/investors', label: 'Inversores' },
+    { path: '/social', label: 'Redes Sociales' }
   ];
 
   const isActive = (path: string) => location.pathname === path;
