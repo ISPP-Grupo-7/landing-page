@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import Download from "@/pages/Download";
 import { Resources } from "@/pages/Resources";
 import AddPage from "@/pages/Add";
+import SocialPosts from "@/pages/SocialPosts";
 
 // Legal Pages
 import TermsAndConditions from "@/pages/legal/TermsAndConditions";
@@ -33,6 +34,7 @@ import Careers from "@/pages/company/Careers";
 import Affiliates from "@/pages/company/Affiliates";
 import Contact from "@/pages/company/Contact";
 import AddForm from "./components/add/AddForm";
+import Investors from "./pages/Investors";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +50,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/plan" element={<Plan />} />
+            <Route path="/investors" element={<Investors />} />
             <Route path="/explorar" element={<Explore />} />
             <Route path="/recursos" element={<Resources />} />
             <Route path="/download" element={<Download />} />
@@ -72,7 +75,7 @@ const App = () => (
             <Route path="/careers" element={<Careers />} />
             <Route path="/affiliates" element={<Affiliates />} />
             <Route path="/contact" element={<Contact />} />
-            
+            <Route path="/social" element={<SocialPosts />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

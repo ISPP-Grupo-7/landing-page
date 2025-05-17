@@ -63,6 +63,7 @@ export default function Plan() {
       },
       "Sistema social": {
         available: true,
+        limit: "",
         tooltip: "Conecta con otros viajeros"
       },
       "Logros": {
@@ -72,10 +73,12 @@ export default function Plan() {
       },
       "Estadísiticas": {
         available: false,
+        limit: "",
         tooltip: "Conecta con otros viajeros"
       },
       "Sin anuncios": {
         available: false,
+        limit: "",
         tooltip: "Verás anuncios mientras usas la app"
       }
     },
@@ -127,18 +130,22 @@ export default function Plan() {
       },
       "Sistema social": {
         available: true,
+        limit: "",
         tooltip: "Conecta con otros viajeros"
       },
       "Logros": {
         available: true,
+        limit: "",
         tooltip: "Conecta con otros viajeros"
       },
       "Estadísiticas": {
         available: true,
+        limit: "",
         tooltip: "Conecta con otros viajeros"
       },
       "Sin anuncios": {
         available: true,
+        limit: "",
         tooltip: "Verás anuncios mientras usas la app"
       }
     }
@@ -151,13 +158,13 @@ export default function Plan() {
       description: "Perfecto para empezar tu aventura",
       features: features.basic,
       buttonText: "Comenzar gratis",
-      buttonLink: "/register",
+      buttonLink: "/",
       highlighted: false,
       badge: "Popular"
     },
     {
       name: "Premium",
-      price: "5,50€",
+      price: "2,99€",
       period: "/mes",
       description: "Para viajeros apasionados",
       features: features.premium,
@@ -226,4 +233,4 @@ export default function Plan() {
       </div>
     </div>
   );
-} 
+}

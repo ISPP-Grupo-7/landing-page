@@ -224,7 +224,7 @@ export default function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
             Aplicación en funcionamiento:
           </h2>
-          <div className="grid md:grid-cols-4 gap-8 mx-auto">
+          <div className="grid md:grid-cols-5 gap-8 mx-auto">
             {[
               {
                 url: "https://app1.mapyourworld.es",
@@ -244,7 +244,13 @@ export default function Index() {
               {
                 url: "https://app4.mapyourworld.es",
                 title: "Versión 4",
-                description: "Explora la versión más reciente con todas las funcionalidades actualizadas.",
+                description: "Sigue explorando y disfrutando de las funcionalidades mejoradas de esta versión.",
+              },
+              {
+                url: "https://app5.mapyourworld.es",
+                title: "Versión 5",
+                description: "Accede a la versión más reciente y avanzada de nuestra aplicación.",
+                isNew: true
               },
             ].map((app, index) => (
               <a
@@ -253,7 +259,7 @@ export default function Index() {
                 target="_blank"
                 className="block bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center relative"
               >
-                {index === 3 && (
+                {app.isNew && (
                   <div className="absolute -top-3 -right-3">
                     <span className="px-3 py-1 rounded-full text-sm font-medium bg-[#0003ff] text-white">New</span>
                   </div>
